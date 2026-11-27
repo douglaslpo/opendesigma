@@ -57,6 +57,12 @@
       "required": false
     }
   ],
+  "backend": {
+    "note": "Optional API path — Next route handlers by default (examples/api-seed). Hono is opt-in; resolve→pin when first used. UI-only remains default.",
+    "docs": "docs/backend-path.md",
+    "seed": "examples/api-seed",
+    "skill": "scaffold-backend"
+  },
   "localDesignSystem": {
     "designMd": "examples/web-seed/DESIGN.md",
     "tokens": "examples/web-seed/tokens.css",

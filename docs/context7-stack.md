@@ -24,6 +24,14 @@ possible) before codegen against unfamiliar APIs.
 | UI runtime | React Native | `/facebook/react-native` | Prefer with Expo; query before RN APIs |
 | Docs map | — | [`docs/mobile-path.md`](./mobile-path.md) | App Store / Play = **Later** |
 
+## Backend path (Should — optional API)
+
+| Concern | Package / product | Context7 ID | Notes |
+| --- | --- | --- | --- |
+| Route handlers (default) | Next.js | `/vercel/next.js` | Seed: `examples/api-seed`; skill `scaffold-backend` |
+| Separate API (opt-in) | Hono | resolve→pin when first used | Documented in [`backend-path.md`](./backend-path.md); not required for MVP |
+| Docs map | — | [`docs/backend-path.md`](./backend-path.md) | UI-only default; auth/DB product = **Later** |
+
 ## Seed companion libs (Should)
 
 | Concern | Package | Context7 ID |

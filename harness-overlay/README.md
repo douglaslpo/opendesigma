@@ -14,11 +14,11 @@ core do harness (listas hardcoded ficam para v1 skill-packs).
 | --- | --- | --- |
 | `explore` / investigator | `ask-desigma` | Router de intent de produto |
 | `propose` | `prototype` (se look aberto), critérios visuais no design.md do change | HITL no taste |
-| `apply` / implementer | `pick-stack`, `scaffold-web`, `scaffold-mobile`, `figma-sync`, promote de `prototype` | Codegen com DS / Code Connect |
+| `apply` / implementer | `pick-stack`, `scaffold-web`, `scaffold-mobile`, `scaffold-backend`, `figma-sync`, promote de `prototype` | Codegen com DS / Code Connect / API stubs |
 | `test` | smoke do app scaffoldado | — |
 | `verify` | `break-ui`, `review-ui`, `design-jury`, `mobile-feel` (Expo) | Gates + `tools/ds-lint`; ver [`docs/design-jury.md`](../docs/design-jury.md) |
 | `review` / auditor | `review-ui`, `design-jury` | Complementa checklist harness |
-| `archive` / PR | `ship-preview` | Preview URL + PR; sem merge automático |
+| `archive` / PR | `ship-preview` (+ round-trip) | Preview URL + PR; sem merge automático; ver `docs/round-trip.md` |
 | Pós-sessão | `learn-taste` | `DESIGN.md` do workspace |
 
 ## Instalação opcional (Cursor)
@@ -45,7 +45,8 @@ Skills `harness-*` continuam vindas do instalador global do harness
 2. **Artefatos:** plans/ e `DESIGN.md` no workspace; PNG/diff do kernel
    (`desigma-mcp`) quando houver canvas — paths no briefing (bus é texto-only).
 3. **Ownership:** arquivos gerados por `scaffold-web` / `scaffold-mobile` /
-   promote entram no `memory.yaml` touched/owned como qualquer apply.
+   `scaffold-backend` / promote entram no `memory.yaml` touched/owned como
+   qualquer apply.
 4. **Autopilot:** não encadear `prototype`/`learn-taste` sem HITL — taste nodes
    exigem humano.
 
@@ -55,3 +56,4 @@ Skills `harness-*` continuam vindas do instalador global do harness
 - Sub-agentes novos (`harness-designer`, …) — later
 - Artifact store binário — later
 - Store pipeline mobile (EAS submit / App Store) — later (path Expo: `docs/mobile-path.md`)
+- Auth/DB produto completo — later (path API opcional: `docs/backend-path.md`)

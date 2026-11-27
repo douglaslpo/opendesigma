@@ -6,7 +6,8 @@ description: >
   drawers, charts, DnD, state). Use when choosing dependencies, "qual lib?",
   "não reinventa toast", or before hand-rolling UI chrome. Prefer what is
   already installed. For scaffolding a new web app use scaffold-web; for Expo
-  mobile use scaffold-mobile (docs/mobile-path.md).
+  mobile use scaffold-mobile (docs/mobile-path.md); for optional API stubs use
+  scaffold-backend (docs/backend-path.md).
 disable-model-invocation: true
 layer: builder
 surfaces: [both]
@@ -27,7 +28,8 @@ A lookup skill. Match the **task** to the curated list. Don't substitute
 outside the list unless the user asks or the task isn't covered — then say so.
 
 It does ONE thing: recommend (and optionally install) the right dependency.
-Not scaffold (`scaffold-web` / `scaffold-mobile`), not variants (`prototype`).
+Not scaffold (`scaffold-web` / `scaffold-mobile` / `scaffold-backend`), not
+variants (`prototype`).
 
 ## How to use
 
@@ -35,6 +37,8 @@ Not scaffold (`scaffold-web` / `scaffold-mobile`), not variants (`prototype`).
 2. **Surface first:** web → catalog below; mobile/Expo/RN → point to
    `scaffold-mobile` + `docs/mobile-path.md` (and Context7 `/expo/expo`,
    `/facebook/react-native`) — don't paste web-only libs into RN.
+   Backend/API stubs → `scaffold-backend` + `docs/backend-path.md` (Next
+   route handlers default; Hono opt-in) — don't invent a parallel stack.
 3. **Check `package.json` / lockfile first.** Already installed listed lib → use
    it. Competitor present → flag; don't churn without being asked.
 4. **Recommend one library**, one sentence why; install/wire only if requested.
@@ -50,12 +54,15 @@ Not scaffold (`scaffold-web` / `scaffold-mobile`), not variants (`prototype`).
 | UI runtime | React | React Native |
 | Styling | Tailwind + `DESIGN.md` / `tokens.css` | `DESIGN.md` + `tokens.ts` (same semantics) |
 | Scaffold | `scaffold-web` | `scaffold-mobile` (`examples/mobile-seed`) |
+| Optional API | `scaffold-backend` (Next `app/api` · Hono opt-in) | n/a (use web API or Later) |
 | Feel / craft | `review-ui` | `mobile-feel` → `review-ui` |
-| Deploy preview | Vercel (`ship-preview`) | Preview/PR via `ship-preview`; **store = Later** |
+| Deploy preview | Vercel (`ship-preview` + round-trip) | Preview/PR via `ship-preview`; **store = Later** |
 
 Web is still the MVP default. Mobile is an **explicit named path** — use
 `scaffold-mobile` when the brief is Expo/RN; never pretend store submit is in
-scope (see `docs/mobile-path.md`).
+scope (see `docs/mobile-path.md`). Backend is **optional** — use
+`scaffold-backend` only when API stubs are in scope (see
+`docs/backend-path.md`); só-UI stays first-class.
 
 ## Curated libraries
 

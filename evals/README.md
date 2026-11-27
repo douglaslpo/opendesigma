@@ -1,9 +1,9 @@
 # OpenDesigma evals (MVP seed)
 
 Outcome-focused checks for the web seed (**DS reuse**, **DS lint**, **design
-contract**, **Context7 map**, **a11y smoke**, **Next build**) plus a light
-**Expo mobile path** smoke. Deterministic graders — no LLM judge yet
-(`design-jury` is the agent scorecard).
+contract**, **Context7 map**, **a11y smoke**, **Next build**) plus light
+**Expo mobile path** and **optional backend path** smokes. Deterministic
+graders — no LLM judge yet (`design-jury` is the agent scorecard).
 
 ## Prerequisites
 
@@ -53,6 +53,7 @@ JSON summary prints to stdout; human lines to stderr.
 | `context7-map` | `context7.json` + docs map list required library IDs | repo root |
 | `a11y-smoke` | `lang` on `<html>`, buttons have explicit `type`, focus styles present | `examples/web-seed` |
 | `mobile-path` | Expo seed + `DESIGN.md`/`tokens.ts` + skills + docs (no store build) | `examples/mobile-seed` |
+| `backend-path` | API seed + scaffold-backend + backend/round-trip docs (no Next install) | `examples/api-seed` |
 | `build-smoke` | `pnpm build` succeeds in the seed | `examples/web-seed` |
 
 ## Adding an eval

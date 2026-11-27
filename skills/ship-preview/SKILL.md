@@ -2,10 +2,11 @@
 name: ship-preview
 description: >
   Produce a shareable preview (local host or Vercel/preview deploy) and/or open
-  a PR that promotes accepted UI — with gates noted. Use when the user says
-  ship, preview, "manda o link", deploy draft, or open PR after prototype
-  promote. Not for designing variants (prototype) or writing taste rules
-  (learn-taste).
+  a PR that promotes accepted UI — with gates noted. Light preview→repo
+  round-trip (promote → commit/PR) is documented in ROUNDTRIP.md and
+  docs/round-trip.md. Use when the user says ship, preview, "manda o link",
+  deploy draft, open PR after prototype promote, or round-trip preview to git.
+  Not for designing variants (prototype) or writing taste rules (learn-taste).
 disable-model-invocation: true
 layer: flow
 surfaces: [web]
@@ -81,6 +82,9 @@ Record URL, commit SHA, and expiry/assumptions. Label local vs deployed.
 
 ### Phase 4 — Git / PR (when requested)
 
+Light **preview ↔ repo** round-trip (promote → commit/PR). Follow
+[`ROUNDTRIP.md`](./ROUNDTRIP.md) and [`docs/round-trip.md`](../../docs/round-trip.md).
+
 ```sh
 # illustrative — follow repo conventions
 git checkout -b <feature-branch>
@@ -90,7 +94,12 @@ git push -u origin <feature-branch>
 ```
 
 PR body must include: summary, preview URL (if any), verify commands, gate
-status.
+status. **No compulsory merge** — stop after opening the PR unless the user
+explicitly asks to merge.
+
+Note: the static preview host does not run Next `/api/*` handlers. For API
+stubs (`scaffold-backend` / `examples/api-seed`), label a Next/deploy preview
+separately from any static `:4173` UI export.
 
 ### Phase 5 — Report
 
@@ -99,6 +108,7 @@ status.
 | Preview | URL (prefer `:4173` host) or "local-only :3000" |
 | Branch | … |
 | PR | URL or n/a |
+| Round-trip | promote → commit/PR ✅/⏭ |
 | Gates | review-ui ✅/⏭ · break-ui ✅/⏭ |
 | Next | `learn-taste` if the session had corrections |
 
@@ -107,7 +117,7 @@ status.
 | Invocation | Behavior |
 | --- | --- |
 | `/ship-preview` | Preflight + best-effort preview |
-| `/ship-preview pr` | Preview + branch/PR |
+| `/ship-preview pr` | Preview + branch/PR (round-trip) |
 | `/ship-preview --force` | Skip gate nag (still report debt) |
 | `/ship-preview local` | Local URL only |
 
