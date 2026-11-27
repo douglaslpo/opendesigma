@@ -68,8 +68,9 @@ Pick the first that works:
    ```sh
    # put static export / prototype HTML in the root, then:
    node packages/preview-host/bin/preview-host.mjs --root <dir>
-   # → http://127.0.0.1:4173/   health: /healthz
+   # → http://127.0.0.1:4173/   health: /healthz → {"ok":true}
    # optional: OD_PREVIEW_TOKEN=… for LAN/tunnel
+   #   Bearer header, or POST /__preview/session (cookie). Never ?token=
    ```
 
 2. **Framework preview** — e.g. `vercel` / platform CLI linked to the repo

@@ -3,8 +3,8 @@
 Minimal **static** preview host for OpenDesigma (Opção A — Cursor-centric).
 
 - Serves a directory over HTTP
-- `GET /healthz` JSON liveness
-- Optional bearer / query token
+- `GET /healthz` → `{"ok":true}` (no local paths)
+- Optional bearer or session cookie. Credentials in the URL are rejected
 - Zero npm dependencies (Node ≥ 20)
 
 Spec: [`docs/preview-host.md`](../../docs/preview-host.md).
@@ -36,12 +36,19 @@ node packages/preview-host/bin/preview-host.mjs \
   --port 4173
 ```
 
-Optional auth (LAN / tunnel):
+Optional auth (required for any non-loopback bind):
 
 ```sh
 OD_PREVIEW_TOKEN=dev-only node packages/preview-host/bin/preview-host.mjs --root ./out
 # curl -H 'Authorization: Bearer dev-only' http://127.0.0.1:4173/
-# or http://127.0.0.1:4173/?token=dev-only
+# browser: open /__preview/login — the token is POSTed, then a session cookie
+# loads the page and assets. ?token= is rejected (HTTP 400).
+```
+
+Publication contract (harmless fixture, no network):
+
+```sh
+node --test packages/preview-host/test/publication-contract.test.mjs
 ```
 
 ## Env / flags
@@ -51,7 +58,7 @@ OD_PREVIEW_TOKEN=dev-only node packages/preview-host/bin/preview-host.mjs --root
 | `--root` / `OD_PREVIEW_ROOT` | `.opendesigma/preview` if exists, else package `public/` |
 | `--port` / `OD_PREVIEW_PORT` | `4173` |
 | `--host` / `OD_PREVIEW_HOST` | `127.0.0.1` |
-| `--token` / `OD_PREVIEW_TOKEN` | off |
+| `--token` / `OD_PREVIEW_TOKEN` | off on loopback; required otherwise |
 
 ## With skills
 
