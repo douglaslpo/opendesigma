@@ -1,0 +1,43 @@
+{
+  "schema": "opendesigma.provenance/v1",
+  "sha": null,
+  "binding": "unbound",
+  "executionMode": "split",
+  "runtimes": {
+    "staticPreview": {
+      "kind": "dedicated-artifact",
+      "root": "fixtures/web-journey/static",
+      "host": "packages/preview-host"
+    },
+    "nextInteractive": {
+      "kind": "separate-runtime",
+      "package": "examples/web-seed",
+      "route": "/briefing",
+      "command": "pnpm dev | pnpm start"
+    }
+  },
+  "artifact": {
+    "algorithm": "sha256",
+    "hash": null,
+    "files": [
+      "assets/app.css",
+      "assets/app.js",
+      "assets/mark.svg",
+      "assets/model.mjs",
+      "index.html"
+    ]
+  },
+  "urls": {
+    "localStatic": null,
+    "localNext": null,
+    "deployed": null
+  },
+  "addressClass": {
+    "localStatic": null,
+    "localNext": null,
+    "deployed": null
+  },
+  "gates": [],
+  "promoted": null,
+  "generatedAt": null
+}
