@@ -16,6 +16,14 @@ possible) before codegen against unfamiliar APIs.
 | Styling | Tailwind CSS | `/tailwindlabs/tailwindcss` | v4 `@import "tailwindcss"` + `@theme` |
 | TypeScript | TypeScript | `/microsoft/typescript` | Config / types only when unsure |
 
+## Mobile path (Should — explicit Expo)
+
+| Concern | Package / product | Context7 ID | Notes |
+| --- | --- | --- | --- |
+| App framework | Expo | `/expo/expo` | Seed: `examples/mobile-seed`; skill `scaffold-mobile` |
+| UI runtime | React Native | `/facebook/react-native` | Prefer with Expo; query before RN APIs |
+| Docs map | — | [`docs/mobile-path.md`](./mobile-path.md) | App Store / Play = **Later** |
+
 ## Seed companion libs (Should)
 
 | Concern | Package | Context7 ID |
@@ -38,7 +46,8 @@ here. Do not leave unresolved names in skills.
 | DESIGN.md lint (optional) | Google design.md | resolve `@google/design.md` when used |
 
 Internal DS (this repo’s `DESIGN.md` / tokens) is **not** on Context7 — read
-local files / future DS MCP. Private Context7 source = v1 Should.
+local files (`examples/web-seed`, `examples/mobile-seed`) / future DS MCP.
+Private Context7 source = v1 Should.
 
 ## Agent rule (copy into prompts / AGENTS.md)
 

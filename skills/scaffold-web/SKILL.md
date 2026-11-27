@@ -6,7 +6,7 @@ description: >
   layout — ready for prototype/promote and ship-preview. Use when the user
   asks to create/scaffold a Next app, "cria o projeto", or bootstrap web.
   Not for picking a single lib (pick-stack), variants (prototype), or Expo
-  mobile (later pack).
+  mobile (use scaffold-mobile / docs/mobile-path.md).
 disable-model-invocation: true
 layer: builder
 surfaces: [web]
@@ -112,4 +112,5 @@ Stop. Don't start feature work unless asked.
 ## Tone
 
 Be explicit about what was *not* included (auth, CMS, mobile). Offer
-`pick-stack` when the first feature needs a specialized lib.
+`scaffold-mobile` for Expo/RN and `pick-stack` when the first feature needs a
+specialized lib.

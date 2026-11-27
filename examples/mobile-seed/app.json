@@ -1,0 +1,27 @@
+{
+  "expo": {
+    "name": "OpenDesigma Mobile Seed",
+    "slug": "opendesigma-mobile-seed",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "resizeMode": "contain",
+      "backgroundColor": "#e6eef3"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "dev.opendesigma.mobileseed"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#e6eef3"
+      },
+      "package": "dev.opendesigma.mobileseed"
+    },
+    "web": {
+      "bundler": "metro"
+    }
+  }
+}

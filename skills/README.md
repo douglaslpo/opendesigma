@@ -12,8 +12,10 @@ Metamodel adapted from [emilkowalski/skills](https://github.com/emilkowalski/ski
 | --- | --- | --- |
 | [`ask-desigma`](ask-desigma/) | router | Choose one skill / short sequence |
 | [`prototype`](prototype/) | flow | Divergent variants + picker (`PICKER.md`) |
-| [`pick-stack`](pick-stack/) | builder | Curated web libs / primitives |
+| [`pick-stack`](pick-stack/) | builder | Curated libs / primitives (web + mobile pointer) |
 | [`scaffold-web`](scaffold-web/) | builder | Next + React + Tailwind + `DESIGN.md` |
+| [`scaffold-mobile`](scaffold-mobile/) | builder | Expo + RN + `DESIGN.md` / `tokens.ts` |
+| [`mobile-feel`](mobile-feel/) | gate | Touch / safe area / native feel |
 | [`figma-sync`](figma-sync/) | builder | Figma/Code Connect + tokens (`MAP.md`, `TOKENS.md`) |
 | [`break-ui`](break-ui/) | gate | Worst-case data (`CATALOG.md`) |
 | [`review-ui`](review-ui/) | gate | Craft / DS / a11y smoke (`STANDARDS.md`) |
@@ -66,14 +68,16 @@ installer.
 ```
 ask-desigma
   → prototype (+ picker / promote)
-  → pick-stack → scaffold-web
-  → figma-sync          (when Figma / DS map matters)
+  → pick-stack → scaffold-web | scaffold-mobile
+  → mobile-feel             (Expo / RN screens)
+  → figma-sync              (when Figma / DS map matters)
   → break-ui → review-ui
   → ship-preview
   → learn-taste → DESIGN.md
 ```
 
-Figma bridge guide: [`../docs/figma-code-connect.md`](../docs/figma-code-connect.md).
+Figma bridge: [`../docs/figma-code-connect.md`](../docs/figma-code-connect.md).  
+Mobile path: [`../docs/mobile-path.md`](../docs/mobile-path.md) (store = Later).
 
 ## Companions
 
