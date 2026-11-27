@@ -43,9 +43,26 @@
     { "id": "/recharts/recharts", "name": "Recharts", "task": "charts" },
     { "id": "/clauderic/dnd-kit", "name": "dnd kit", "task": "drag-and-drop" }
   ],
+  "mobile": [
+    {
+      "id": "/expo/expo",
+      "name": "Expo",
+      "role": "mobile-app-framework",
+      "required": false
+    },
+    {
+      "id": "/facebook/react-native",
+      "name": "React Native",
+      "role": "mobile-ui-runtime",
+      "required": false
+    }
+  ],
   "localDesignSystem": {
     "designMd": "examples/web-seed/DESIGN.md",
     "tokens": "examples/web-seed/tokens.css",
-    "components": "examples/web-seed/components/ui"
+    "components": "examples/web-seed/components/ui",
+    "mobileDesignMd": "examples/mobile-seed/DESIGN.md",
+    "mobileTokens": "examples/mobile-seed/tokens.ts",
+    "mobileComponents": "examples/mobile-seed/components/ui"
   }
 }

@@ -14,9 +14,9 @@ core do harness (listas hardcoded ficam para v1 skill-packs).
 | --- | --- | --- |
 | `explore` / investigator | `ask-desigma` | Router de intent de produto |
 | `propose` | `prototype` (se look aberto), critérios visuais no design.md do change | HITL no taste |
-| `apply` / implementer | `pick-stack`, `scaffold-web`, `figma-sync`, promote de `prototype` | Codegen com DS / Code Connect |
+| `apply` / implementer | `pick-stack`, `scaffold-web`, `scaffold-mobile`, `figma-sync`, promote de `prototype` | Codegen com DS / Code Connect |
 | `test` | smoke do app scaffoldado | — |
-| `verify` | `break-ui`, `review-ui` | Gates visuais além de CA/CR texto |
+| `verify` | `break-ui`, `review-ui`, `mobile-feel` (Expo) | Gates visuais além de CA/CR texto |
 | `review` / auditor | `review-ui` | Complementa checklist harness |
 | `archive` / PR | `ship-preview` | Preview URL + PR; sem merge automático |
 | Pós-sessão | `learn-taste` | `DESIGN.md` do workspace |
@@ -43,8 +43,8 @@ Skills `harness-*` continuam vindas do instalador global do harness
    verify” nos critérios de aceite visuais.
 2. **Artefatos:** plans/ e `DESIGN.md` no workspace; PNG/diff do kernel
    (`desigma-mcp`) quando houver canvas — paths no briefing (bus é texto-only).
-3. **Ownership:** arquivos gerados por `scaffold-web` / promote entram no
-   `memory.yaml` touched/owned como qualquer apply.
+3. **Ownership:** arquivos gerados por `scaffold-web` / `scaffold-mobile` /
+   promote entram no `memory.yaml` touched/owned como qualquer apply.
 4. **Autopilot:** não encadear `prototype`/`learn-taste` sem HITL — taste nodes
    exigem humano.
 
@@ -53,4 +53,4 @@ Skills `harness-*` continuam vindas do instalador global do harness
 - Patch em `lib/installer.js` do harness
 - Sub-agentes novos (`harness-designer`, …) — later
 - Artifact store binário — later
-- Pack mobile (`scaffold-mobile`) — later
+- Store pipeline mobile (EAS submit / App Store) — later (path Expo: `docs/mobile-path.md`)

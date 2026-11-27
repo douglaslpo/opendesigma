@@ -45,4 +45,5 @@ Guide: [`docs/figma-code-connect.md`](../../docs/figma-code-connect.md).
 
 ## Not included
 
-Auth, database, mobile/Expo, live Figma publish automation.
+Auth, database, live Figma publish automation. Mobile/Expo lives in
+[`../mobile-seed`](../mobile-seed/) (`docs/mobile-path.md`).

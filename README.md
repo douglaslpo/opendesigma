@@ -12,14 +12,17 @@ web/mobile creation. This repository ships:
    See [`harness-overlay/README.md`](harness-overlay/README.md).
 4. **Web seed** — Next.js App Router + Tailwind + `DESIGN.md` + `tokens.css`.
    See [`examples/web-seed/`](examples/web-seed/).
-5. **Evals** — DS reuse + build smoke fixtures. See [`evals/`](evals/).
-6. **Context7 stack map** — pinned library IDs for docs retrieval.
+5. **Mobile seed** — Expo + React Native + shared token grammar.
+   See [`examples/mobile-seed/`](examples/mobile-seed/) and
+   [`docs/mobile-path.md`](docs/mobile-path.md) (App Store = Later).
+6. **Evals** — DS reuse + build smoke + mobile-path fixtures. See [`evals/`](evals/).
+7. **Context7 stack map** — pinned library IDs for docs retrieval.
    See [`docs/context7-stack.md`](docs/context7-stack.md) /
    [`context7.json`](context7.json).
-7. **Preview host** — static share URL for `ship-preview` / `prototype`
+8. **Preview host** — static share URL for `ship-preview` / `prototype`
    (Opção A shell). See [`packages/preview-host/`](packages/preview-host/)
    and [`docs/preview-host.md`](docs/preview-host.md).
-8. **Figma / Code Connect bridge** — map web-seed components + tokens for
+9. **Figma / Code Connect bridge** — map web-seed components + tokens for
    agents (`figma-sync`). See [`docs/figma-code-connect.md`](docs/figma-code-connect.md)
    and [`examples/web-seed/code-connect/`](examples/web-seed/code-connect/).
 
@@ -36,15 +39,17 @@ for d in skills/*/; do ln -sfn "$(pwd)/$d" ".cursor/skills/$(basename "$d")"; do
 ```
 
 Then invoke `/ask-desigma` (router) or a specific skill (`/prototype`,
-`/scaffold-web`, `/review-ui`, …). Full catalog and install notes:
-[`skills/README.md`](skills/README.md).
+`/scaffold-web`, `/scaffold-mobile`, `/review-ui`, …). Full catalog and install
+notes: [`skills/README.md`](skills/README.md).
 
 | Skill | Job |
 | --- | --- |
 | `ask-desigma` | Router idea→ship |
 | `prototype` | Divergent variants + picker |
-| `pick-stack` | Curated web libraries |
+| `pick-stack` | Curated libraries (web + mobile pointer) |
 | `scaffold-web` | Next/React/Tailwind + `DESIGN.md` |
+| `scaffold-mobile` | Expo/RN + `DESIGN.md` / `tokens.ts` |
+| `mobile-feel` | Touch / safe area / native feel |
 | `figma-sync` | Figma/Code Connect + token sync |
 | `break-ui` | Worst-case data stress |
 | `review-ui` | Craft / DS / a11y gate |
@@ -67,12 +72,23 @@ Read [`examples/web-seed/DESIGN.md`](examples/web-seed/DESIGN.md) and
 before UI work. Figma bridge:
 [`docs/figma-code-connect.md`](docs/figma-code-connect.md).
 
+## Mobile seed (Expo)
+
+Named Expo path for `scaffold-mobile` — same token semantics as web-seed.
+**App Store / Play = Later.** Guide: [`docs/mobile-path.md`](docs/mobile-path.md).
+
+```sh
+cd examples/mobile-seed
+npm install
+npx expo start
+```
+
 Run MVP outcome checks from the repo root:
 
 ```sh
 cd examples/web-seed && pnpm install && cd ../..
 node evals/run.mjs
-# node evals/run.mjs --skip-build
+# node evals/run.mjs --skip-build   # includes mobile-path smoke
 ```
 
 Details: [`evals/README.md`](evals/README.md). Context7 IDs:
@@ -113,7 +129,8 @@ Crate names keep the upstream identifiers for technical continuity; the
 
 - Rust toolchain pinned in `rust-toolchain.toml` (currently 1.93.1)
 - Standard Linux/macOS/Windows build deps for a Rust workspace (no egui/GPU)
-- Node 20+ / pnpm for `examples/web-seed` and `evals/`
+- Node 20+ / pnpm for `examples/web-seed` and `evals/`; npm/Expo for
+  `examples/mobile-seed`
 
 ## Build
 
