@@ -8,3 +8,7 @@ and the desigma contributors.
 OpenDesigma is based on desigma. The desigma name, logo, and icon are
 trademarks of DeepFounder (https://deepfounder.ai). This project does not
 use those marks as a product name; see UPSTREAM.md.
+
+Portions of `skills/` (picker chrome, break-ui catalog, skill anatomy) are
+adapted from emilkowalski/skills (https://github.com/emilkowalski/skills),
+licensed under the MIT License.

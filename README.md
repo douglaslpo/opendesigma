@@ -1,14 +1,44 @@
 # OpenDesigma
 
-**OpenDesigma** is an open design kernel for agentic prototyping, design, and
-web/mobile creation. This repository currently ships the **headless Rust
-kernel** (document IR, layout engine, CPU render, import/export, pixel diff,
-and local MCP) — without the desktop egui chrome.
+**OpenDesigma** is an open stack for agentic prototyping, design, and
+web/mobile creation. This repository ships:
 
-Based on [desigma](https://github.com/deepfounder-ai/desigma). See `NOTICE`,
-`UPSTREAM.md`, `LICENSE-MIT`, and `LICENSE-APACHE`.
+1. **Headless Rust design kernel** — document IR, layout, CPU render,
+   import/export, pixel diff, local MCP (no egui chrome).
+2. **P0 Agent Skills** — router + main flow (prototype → scaffold → gates →
+   ship → taste). See [`skills/README.md`](skills/README.md).
+3. **Harness overlay (docs)** — how those skills sit on
+   [douglaslpo/harness](https://github.com/douglaslpo/harness) SDD phases.
+   See [`harness-overlay/README.md`](harness-overlay/README.md).
 
-## What’s in this workspace
+Kernel based on [desigma](https://github.com/deepfounder-ai/desigma). Skill
+metamodel adapted from [emilkowalski/skills](https://github.com/emilkowalski/skills)
+(MIT). See `NOTICE`, `UPSTREAM.md`, `LICENSE-MIT`, and `LICENSE-APACHE`.
+
+## Agent skills (quick start)
+
+```sh
+# Link into a Cursor project
+mkdir -p .cursor/skills
+for d in skills/*/; do ln -sfn "$(pwd)/$d" ".cursor/skills/$(basename "$d")"; done
+```
+
+Then invoke `/ask-desigma` (router) or a specific skill (`/prototype`,
+`/scaffold-web`, `/review-ui`, …). Full catalog and install notes:
+[`skills/README.md`](skills/README.md).
+
+| Skill | Job |
+| --- | --- |
+| `ask-desigma` | Router idea→ship |
+| `prototype` | Divergent variants + picker |
+| `pick-stack` | Curated web libraries |
+| `scaffold-web` | Next/React/Tailwind + `DESIGN.md` |
+| `break-ui` | Worst-case data stress |
+| `review-ui` | Craft / DS / a11y gate |
+| `ship-preview` | Preview URL and/or PR |
+| `learn-taste` | Persist corrections → `DESIGN.md` |
+
+## What’s in the kernel workspace
 
 | Crate | Role |
 | --- | --- |
