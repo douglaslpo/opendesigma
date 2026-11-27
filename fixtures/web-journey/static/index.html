@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ateliê Lume — fila de briefings</title>
+    <link rel="icon" href="/assets/mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/assets/app.css" />
+  </head>
+  <body>
+    <header class="fixture-bar">
+      <img src="/assets/mark.svg" width="24" height="24" alt="" />
+      <p>Fixture de jornada. Dados fictícios. Direção visual ainda aberta.</p>
+    </header>
+    <footer class="promote-bar">
+      <p id="promote-status" role="status">Direção aberta. Nenhuma variante foi promovida.</p>
+      <button id="promote" type="button">Promover esta direção</button>
+    </footer>
+    <div id="stage" data-direction="open"></div>
+    <nav class="proto-picker" aria-label="Prototype variants">
+      <span class="proto-picker-highlight" aria-hidden="true"></span>
+      <button class="proto-picker-item" data-active aria-current="true" type="button">Quiet</button>
+      <button class="proto-picker-item" type="button">Ledger</button>
+      <button class="proto-picker-item" type="button">Split</button>
+    </nav>
+    <noscript>
+      <p>Esta fixture estática monta a fila com JavaScript. A rota Next /briefing responde sem isso.</p>
+    </noscript>
+    <script type="module" src="/assets/app.js"></script>
+  </body>
+</html>
