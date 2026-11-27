@@ -21,6 +21,8 @@ tokio = { version = "1", features = ["rt-multi-thread", "macros", "sync"], optio
 
 [dev-dependencies]
 rmcp = { version = "=3.5.1", default-features = false, features = ["client", "transport-child-process"] }
+desigma-diff = { path = "../desigma-diff" }
+image.workspace = true
 
 [[bin]]
 name = "desigma-mcp"

@@ -10,32 +10,51 @@ core do harness (listas hardcoded ficam para v1 skill-packs).
 
 ## Mapa SDD ↔ skills OpenDesigma
 
-| Fase harness | Skill(s) OpenDesigma | Notas |
+| Fase | Skills | Decisão humana |
 | --- | --- | --- |
-| `explore` / investigator | `ask-desigma` | Router de intent de produto |
-| `propose` | `prototype` (se look aberto), critérios visuais no design.md do change | HITL no taste |
-| `apply` / implementer | `pick-stack`, `scaffold-web`, `scaffold-mobile`, `scaffold-backend`, `figma-sync`, promote de `prototype` | Codegen com DS / Code Connect / API stubs |
-| `test` | smoke do app scaffoldado | — |
-| `verify` | `break-ui`, `review-ui`, `design-jury`, `mobile-feel` (Expo) | Gates + `tools/ds-lint`; ver [`docs/design-jury.md`](../docs/design-jury.md) |
-| `review` / auditor | `review-ui`, `design-jury` | Complementa checklist harness |
-| `archive` / PR | `ship-preview` (+ round-trip) | Preview URL + PR; sem merge automático; ver `docs/round-trip.md` |
-| Pós-sessão | `learn-taste` | `DESIGN.md` do workspace |
+| `explore` | `ask-desigma` (investigator) | Roteia; não promove sozinho |
+| `propose` | `prototype` (look aberto) | Promote exige escolha humana |
+| `apply` | `pick-stack`, `scaffold-web`, `scaffold-mobile`, `scaffold-backend`, `figma-sync`, promote de `prototype` | Promote só depois da escolha humana |
+| `test` | smoke do app scaffoldado | Smoke não substitui o veredito humano |
+| `verify` | `break-ui`, `review-ui`, `design-jury`, `mobile-feel` (Expo) | Correção do `break-ui` exige humano |
+| `review` | `review-ui`, `design-jury` (auditor) | Veredito do jury permanece humano |
+| `archive` | `ship-preview` (+ round-trip) | Sem merge automático |
+
+`verify` usa `tools/ds-lint` ([`docs/design-jury.md`](../docs/design-jury.md)).
+`archive` entrega URL de preview e PR; sem merge automático
+([`docs/round-trip.md`](../docs/round-trip.md)). Pós-sessão: `learn-taste`
+grava `DESIGN.md` só com aprovação humana.
 
 ## Instalação opcional (Cursor)
 
 No repo consumidor (ou neste monorepo):
 
+Unix (macOS / Linux), a partir do checkout:
+
 ```sh
-# Skills OpenDesigma (projeto)
-REPO_ROOT="$(pwd)"  # checkout opendesigma
+REPO_ROOT="$(pwd)"
 mkdir -p .cursor/skills
 for d in "$REPO_ROOT"/skills/*/; do
   ln -sfn "$d" ".cursor/skills/$(basename "$d")"
 done
 ```
 
+Windows (PowerShell). Symlink pede Modo de Desenvolvedor ou terminal elevado:
+
+```powershell
+New-Item -ItemType Directory -Force -Path .cursor\skills | Out-Null
+Get-ChildItem skills -Directory | ForEach-Object {
+  $link = Join-Path .cursor\skills $_.Name
+  if (Test-Path $link) { Remove-Item $link -Force }
+  New-Item -ItemType SymbolicLink -Path $link -Target $_.FullName
+}
+```
+
+Sem symlink, copie: `Copy-Item -Recurse -Force skills\* .cursor\skills\`.
+
 Skills `harness-*` continuam vindas do instalador global do harness
-(`~/.cursor/skills/harness-*`). Os dois catálogos convivem.
+(`~/.cursor/skills/harness-*` no Unix; `%USERPROFILE%\.cursor\skills\harness-*`
+no Windows). Os dois catálogos convivem.
 
 ## Contratos
 

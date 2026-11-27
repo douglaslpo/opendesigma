@@ -54,12 +54,15 @@ JSON summary prints to stdout; human lines to stderr.
 | `a11y-smoke` | `lang` on `<html>`, buttons have explicit `type`, focus styles present | `examples/web-seed` |
 | `mobile-path` | Expo seed + `DESIGN.md`/`tokens.ts` + skills + docs (no store build) | `examples/mobile-seed` |
 | `backend-path` | API seed + scaffold-backend + backend/round-trip docs (no Next install) | `examples/api-seed` |
+| `router-decisions` | ask-desigma routes a new web brief, an existing repo, Expo, opt-in API and linked Figma | `skills/ask-desigma` |
+| `harness-overlay` | explore/propose/apply/test/verify/review/archive keep human decisions | `harness-overlay/README.md` |
+| `platform-paths` | Quickstart names Unix and Windows skill and MCP paths | `docs/quickstart.md` |
 | `build-smoke` | `pnpm build` succeeds in the seed | `examples/web-seed` |
 
 ## Adding an eval
 
 1. Drop a module under `evals/checks/` exporting `{ id, title, run(ctx) }`.
-2. Register it in `evals/run.mjs` `CHECKS` array.
+2. Register it in `evals/run.mjs` `CHECK_MODULES`.
 3. Keep graders deterministic (filesystem / build / regex). LLM-as-judge = later.
 
 ## Non-goals (MVP)
