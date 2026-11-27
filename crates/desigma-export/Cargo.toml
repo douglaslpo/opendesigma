@@ -1,0 +1,19 @@
+[package]
+name = "desigma-export"
+description = "PNG/JPG/SVG export and Dev Mode CSS for desigma documents"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+flate2 = { version = "1.1", default-features = false, features = ["rust_backend"] }
+base64 = "0.22"
+desigma-doc.workspace = true
+desigma-render.workspace = true
+image = { version = "0.25", default-features = false, features = ["png", "jpeg"] }
+tiny-skia.workspace = true
+# Animation export (GIF, WebM/AV1): all pure Rust. rav1e is built without its `asm` feature (that
+# needs nasm) and without its CLI, so it compiles on any CI runner with only a Rust toolchain.
+gif = { version = "0.14", default-features = false, features = ["std"] }
+color_quant = "1.1"
+rav1e = { version = "0.8", default-features = false, features = ["threading"] }

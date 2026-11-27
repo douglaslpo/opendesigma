@@ -1,0 +1,5 @@
+upstream: https://github.com/deepfounder-ai/desigma
+fork_checkout: https://github.com/douglaslpo/desigma
+extracted_from: douglaslpo/desigma
+git_sha: 3042a5e3e669da74768ca2b2d9ee387adfcaab61
+note: headless kernel crates only (no desigma-app / gpu / collab / net / server)

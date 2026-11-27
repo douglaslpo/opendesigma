@@ -1,0 +1,21 @@
+[package]
+name = "desigma-render"
+description = "CPU renderer (tiny-skia) for desigma documents; deterministic for pixel diffs"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+cosmic-text = "0.19.0"
+desigma-doc.workspace = true
+# Bundled fonts only; the renderer never touches the network.
+desigma-fonts = { path = "../desigma-fonts", default-features = false }
+i_overlay = "9.0.1"
+ttf-parser = "0.25"
+image = { version = "0.25", default-features = false, features = ["png", "jpeg"] }
+rayon = "1"
+tiny-skia.workspace = true
+
+[dev-dependencies]
+# Live tests fetch the Noto script fonts (ignored unless run with --ignored).
+desigma-fonts = { path = "../desigma-fonts" }
