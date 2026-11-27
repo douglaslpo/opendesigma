@@ -9,16 +9,18 @@ mobile path. Token semantics match [`../web-seed`](../web-seed/). Used by
 
 ## Quick start
 
+Reproducible install uses the committed lockfile (npm 10, Node 22):
+
 ```sh
-npm install   # or pnpm / yarn
+npm ci
+npm run typecheck
+npx expo export --platform android
 npx expo start
 ```
 
-Then open in Expo Go, iOS Simulator, Android emulator, or `w` for web.
+Then open in Expo Go or an Android emulator. `npx expo export --platform ios` bundles the JS on any host; the iOS simulator itself needs macOS and Xcode. The web target (`w`) is not in this lockfile — Expo asks for `react-dom`, `react-native-web`, and `@expo/metro-runtime` before `expo export --platform web`.
 
-```sh
-npm run typecheck
-```
+The example buttons change on-screen state: **Start prototype** confirms the screen is running without the API, and **Read DESIGN.md** shows the touch rules. Press feedback is the opacity change plus an Android ripple. Text keeps the default font scaling and the screen scrolls, so enlarged type wraps instead of clipping. Safe area comes from `react-native-safe-area-context` (the React Native `SafeAreaView` is a no-op on Android).
 
 ## Layout
 

@@ -1,11 +1,20 @@
 import { NextResponse } from "next/server";
+import { MAX_BODY_BYTES, readLimitedBody } from "@/lib/read-limited-body.mjs";
 
 export const dynamic = "force-dynamic";
-
-const MAX_BYTES = 64 * 1024;
+export const runtime = "nodejs";
 
 /**
- * Echo stub — validates JSON Content-Type and rejects oversized bodies.
+ * Echo stub — requires application/json and rejects bodies over MAX_BODY_BYTES.
+ *
+ * The cap is 65536 octets, applied while the body is read (byteLength), not
+ * JavaScript string length. Exactly 65536 bytes of valid JSON is accepted.
+ * One more byte returns 413 and the unread tail is cancelled.
+ *
+ * A zero-byte body with application/json is not invalid JSON: the response is
+ * 200 and `echo` is null. A JSON literal `null` is a separate 4-byte payload
+ * that also echoes null. Whitespace-only text is invalid JSON (400).
+ *
  * Not a production API; no auth, no persistence.
  */
 export async function POST(request: Request) {
@@ -17,24 +26,31 @@ export async function POST(request: Request) {
     );
   }
 
-  const raw = await request.text();
-  if (raw.length > MAX_BYTES) {
+  const limited = await readLimitedBody(request, MAX_BODY_BYTES);
+  if (!limited.ok) {
     return NextResponse.json(
-      { ok: false, error: "payload too large" },
+      { ok: false, error: limited.error },
       { status: 413 },
     );
   }
 
-  let body: unknown = null;
-  if (raw.length > 0) {
-    try {
-      body = JSON.parse(raw);
-    } catch {
-      return NextResponse.json(
-        { ok: false, error: "invalid json" },
-        { status: 400 },
-      );
-    }
+  if (limited.bytes.byteLength === 0) {
+    return NextResponse.json({
+      ok: true,
+      echo: null,
+      ts: new Date().toISOString(),
+    });
+  }
+
+  const raw = new TextDecoder("utf-8", { fatal: false }).decode(limited.bytes);
+  let body: unknown;
+  try {
+    body = JSON.parse(raw);
+  } catch {
+    return NextResponse.json(
+      { ok: false, error: "invalid json" },
+      { status: 400 },
+    );
   }
 
   return NextResponse.json({

@@ -71,8 +71,9 @@ Restate in one sentence; confirm if destructive.
    Next app, **or** scaffold `examples/api-seed/` as a standalone API demo.
 2. Ship at least:
    - `GET /api/health` → `{ ok: true, service, ts }`
-   - `POST /api/echo` → echoes JSON body (validate Content-Type; reject huge
-     payloads lightly)
+   - `POST /api/echo` → echoes JSON body (validate Content-Type; reject bodies
+     over 64 KiB by counting bytes while reading, not string length). A
+     zero-byte JSON body echoes `null` with 200; oversized bodies return 413.
 3. Add `AGENTS.md` pointer (or append) naming the API stubs +
    `docs/backend-path.md`.
 4. Do **not** require Tailwind/`DESIGN.md` for API-only packages — UI stays

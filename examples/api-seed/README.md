@@ -10,8 +10,8 @@ stacks = Later — see [`docs/backend-path.md`](../../docs/backend-path.md).
 ## Quick start
 
 ```sh
-pnpm install
-pnpm dev      # http://localhost:3000
+pnpm install --frozen-lockfile
+pnpm dev      # http://127.0.0.1:3000
 ```
 
 ```sh
@@ -19,12 +19,25 @@ curl -s http://127.0.0.1:3000/api/health
 curl -s -X POST http://127.0.0.1:3000/api/echo \
   -H 'content-type: application/json' \
   -d '{"ping":true}'
+# empty body → 200 {"ok":true,"echo":null,...}
+curl -s -X POST http://127.0.0.1:3000/api/echo \
+  -H 'content-type: application/json' \
+  --data-binary ''
 ```
 
 ```sh
 pnpm build
 pnpm typecheck
+pnpm test:body
+API_BASE=http://127.0.0.1:3000 pnpm test:echo
 ```
+
+`POST /api/echo` stops at **65536 bytes** while reading. The comparison is
+`byteLength`, not string length, so a short string of multibyte characters can
+still be rejected. Details and the empty-body row are in
+[`docs/backend-path.md`](../../docs/backend-path.md).
+
+This package is opt-in. The web seed does not call it.
 
 ## Layout
 

@@ -80,6 +80,12 @@ npx expo start
 npm run typecheck   # if configured
 ```
 
+In this repo, `examples/mobile-seed` already has `package-lock.json`. Use
+`npm ci`, then `npm run typecheck` and `npx expo export --platform android`.
+`expo-asset` has to be a direct dependency or Metro export fails. The iOS
+simulator is a separate check (macOS/Xcode); `expo export --platform ios`
+only produces the JS bundle.
+
 App boots in Expo Go / simulator; no redbox on first screen.
 
 ### Phase 4 — Hand off

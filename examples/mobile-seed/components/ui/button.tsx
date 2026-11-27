@@ -33,6 +33,10 @@ export function Button({
   return (
     <Pressable
       accessibilityRole="button"
+      android_ripple={{
+        color: isPrimary ? color.accentInk : color.line,
+        foreground: true,
+      }}
       disabled={disabled}
       style={({ pressed }) => [
         styles.base,
@@ -72,7 +76,7 @@ const styles = StyleSheet.create({
     borderColor: color.line,
   },
   pressed: {
-    opacity: 0.88,
+    opacity: 0.72,
   },
   disabled: {
     opacity: 0.5,
