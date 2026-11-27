@@ -9,7 +9,8 @@
   },
   "scripts": {
     "start": "node ./bin/preview-host.mjs",
-    "demo": "node ./bin/preview-host.mjs --root ./public"
+    "demo": "node ./bin/preview-host.mjs --root ./public",
+    "test": "node --test test/publication-contract.test.mjs"
   },
   "engines": {
     "node": ">=20"

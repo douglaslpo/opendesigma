@@ -80,14 +80,14 @@ Host estático mínimo para `ship-preview` / HTML de `prototype`. Spec:
 
 ```sh
 node packages/preview-host/bin/preview-host.mjs --root packages/preview-host/public
-# → http://127.0.0.1:4173/   ·   GET /healthz → {"ok":true,…}
+# → http://127.0.0.1:4173/   ·   GET /healthz → {"ok":true}
 ```
 
 | Item | Default |
 | --- | --- |
 | URL | `http://127.0.0.1:4173/` |
 | Porta | `4173` (`OD_PREVIEW_PORT`) |
-| Auth | Opcional (`OD_PREVIEW_TOKEN` / Bearer ou `?token=`) |
+| Auth | Desligada no loopback. Fora dele, `OD_PREVIEW_TOKEN` (Bearer ou cookie de sessão; sem `?token=`) |
 
 Aponte `--root` para `out/` (export Next), HTML de protótipo ou
 `.opendesigma/preview/`. O host **não** faz HMR — dev interativo continua em
