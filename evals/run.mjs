@@ -18,6 +18,9 @@ const CHECK_MODULES = [
   "./checks/a11y-smoke.mjs",
   "./checks/mobile-path.mjs",
   "./checks/backend-path.mjs",
+  "./checks/router-decisions.mjs",
+  "./checks/harness-overlay.mjs",
+  "./checks/platform-paths.mjs",
   "./checks/build-smoke.mjs",
 ];
 

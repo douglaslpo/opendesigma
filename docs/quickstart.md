@@ -29,13 +29,33 @@ cd opendesigma
 ## 1. Instalar as skills no Cursor
 
 As skills vivem em [`skills/`](../skills/). Instale por symlink no projeto
-(recomendado enquanto o catálogo evolui):
+(recomendado enquanto o catálogo evolui). Os caminhos completos de Unix e
+Windows, inclusive o binário MCP, estão na seção [Caminhos no disco](#caminhos-no-disco).
+
+Unix (macOS / Linux), na raiz do checkout:
 
 ```sh
 mkdir -p .cursor/skills
 for d in skills/*/; do
   ln -sfn "$(pwd)/$d" ".cursor/skills/$(basename "$d")"
 done
+```
+
+Windows (PowerShell). Symlink pede Modo de Desenvolvedor ou terminal elevado:
+
+```powershell
+New-Item -ItemType Directory -Force -Path .cursor\skills | Out-Null
+Get-ChildItem skills -Directory | ForEach-Object {
+  $link = Join-Path .cursor\skills $_.Name
+  if (Test-Path $link) { Remove-Item $link -Force }
+  New-Item -ItemType SymbolicLink -Path $link -Target $_.FullName
+}
+```
+
+Se o symlink falhar, copie:
+
+```powershell
+Copy-Item -Recurse -Force skills\* .cursor\skills\
 ```
 
 Ou, quando publicado no registry:
@@ -141,6 +161,17 @@ Comece incerto? Invoque **`/ask-desigma`**. O router escolhe **uma** skill (ou
 sequência curta), explica em uma frase e nomeia a seguinte — sem despejar o
 catálogo.
 
+Decisões que o check `router-decisions` trava no texto de `ask-desigma`
+(sem LLM). A primeira regra que casa ganha. UI-only continua o default.
+
+| Situação | Skill | Seguinte | Humano |
+| --- | --- | --- | --- |
+| Brief web novo, look aberto | `prototype` | `scaffold-web` | promote explícito |
+| Repo já existe, review da UI | `review-ui` | `design-jury` | — |
+| Expo / React Native | `scaffold-mobile` | `mobile-feel` | — |
+| API opt-in (health / echo) | `scaffold-backend` | — | não force backend |
+| Figma vinculado | `figma-sync` | `break-ui` | arquivo real e pedido explícito para publicar |
+
 | Você diz | Skill |
 | --- | --- |
 | “Por onde começo?” / goal vago | `ask-desigma` |
@@ -212,6 +243,63 @@ Mapa no harness SDD: [`harness-overlay/README.md`](../harness-overlay/README.md)
 6. Antes de ship: `node tools/ds-lint/ds-lint.mjs` + `/design-jury`.
 7. `/ship-preview` com URL `http://127.0.0.1:4173/` (+ PR se promove).
 
+## Caminhos no disco
+
+Troque o prefixo pelo checkout real. O servidor MCP é stdio local: não abre
+porta. Crie a pasta `designs` antes de apontar `--workspace`.
+
+### Unix (macOS / Linux)
+
+Binário de debug (release troca `debug` por `release`):
+
+```json
+{
+  "mcpServers": {
+    "opendesigma": {
+      "command": "/src/opendesigma/target/debug/desigma-mcp",
+      "args": ["--workspace", "/src/opendesigma/designs"]
+    }
+  }
+}
+```
+
+```sh
+mkdir -p /src/opendesigma/designs
+cargo run --locked -p desigma-mcp -- --workspace /src/opendesigma/designs
+```
+
+### Windows
+
+O executável leva `.exe`. No JSON, cada barra invertida do caminho se escreve
+como `\\`.
+
+```json
+{
+  "mcpServers": {
+    "opendesigma": {
+      "command": "C:\\src\\opendesigma\\target\\debug\\desigma-mcp.exe",
+      "args": ["--workspace", "C:\\src\\opendesigma\\designs"]
+    }
+  }
+}
+```
+
+```powershell
+New-Item -ItemType Directory -Force -Path C:\src\opendesigma\designs
+cargo run --locked -p desigma-mcp -- --workspace C:\src\opendesigma\designs
+```
+
+`node`, `cargo`, `pnpm` e `npm` são os mesmos comandos nos dois sistemas;
+eles precisam estar no `PATH`. Preview host, evals e o seed web não mudam
+de flag. Detalhe das ferramentas: [`crates/desigma-mcp/README.md`](../crates/desigma-mcp/README.md).
+
+Kernel (a suíte imprime `DESIGMA_JOURNEY_LATENCY_MS` com `--nocapture`; o
+número é baseline, não meta):
+
+```sh
+cargo test --locked -p desigma-doc -p desigma-engine -p desigma-mcp -- --test-threads=1
+```
+
 ## Próximos links
 
 | Doc | Conteúdo |
@@ -225,4 +313,5 @@ Mapa no harness SDD: [`harness-overlay/README.md`](../harness-overlay/README.md)
 | [`design-jury.md`](design-jury.md) | Jury + ds-lint |
 | [`figma-code-connect.md`](figma-code-connect.md) | Bridge Figma |
 | [`evals/README.md`](../evals/README.md) | Checks determinísticos |
-| README raiz | Kernel, MCP, licença |
+| [`harness-overlay/README.md`](../harness-overlay/README.md) | Fases SDD e decisões humanas |
+| README raiz | Kernel, MCP (47 tools), licença |

@@ -505,11 +505,13 @@ dependencies = [
 name = "desigma-mcp"
 version = "0.1.0"
 dependencies = [
+ "desigma-diff",
  "desigma-doc",
  "desigma-engine",
  "desigma-export",
  "desigma-library",
  "desigma-svg",
+ "image",
  "rmcp",
  "serde",
  "serde_json",

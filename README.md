@@ -195,9 +195,10 @@ Example MCP client config (stdio):
 }
 ```
 
-Tool names remain `desigma_*` for compatibility with the document API. The
-server identity is branded as OpenDesigma. File sessions work headless; live
-editor bridge requires a separate desktop host (not shipped here).
+It provides 47 tools. Tool names remain `desigma_*` for compatibility with the
+document API. The server identity is branded as OpenDesigma. File sessions work
+headless; live editor bridge requires a separate desktop host (not shipped here).
+Unix and Windows client paths: [`docs/quickstart.md`](docs/quickstart.md).
 
 ## License
 
