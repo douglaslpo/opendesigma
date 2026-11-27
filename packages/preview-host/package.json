@@ -1,0 +1,17 @@
+{
+  "name": "@opendesigma/preview-host",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Minimal static preview host for OpenDesigma ship-preview / prototype",
+  "type": "module",
+  "bin": {
+    "od-preview-host": "./bin/preview-host.mjs"
+  },
+  "scripts": {
+    "start": "node ./bin/preview-host.mjs",
+    "demo": "node ./bin/preview-host.mjs --root ./public"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

@@ -101,6 +101,19 @@ exists. Present the set and **stop — choice belongs to the user**:
 
 Close with picker URL/path and flip keys.
 
+**Preview host (when a clickable URL helps):** copy the prototype surface
+(static HTML or export) into a root served by
+[`packages/preview-host`](../../packages/preview-host/) — see
+[`docs/preview-host.md`](../../docs/preview-host.md):
+
+```sh
+node packages/preview-host/bin/preview-host.mjs --root <prototype-dir>
+# → http://127.0.0.1:4173/
+```
+
+Dev-server routes (`/prototypes/<slug>`) can stay on the app port; use the
+host when handing a shareable static preview (before `ship-preview`).
+
 ### Phase 6 — Promote on selection
 
 Integrate the winner with project conventions, then delete the prototype
