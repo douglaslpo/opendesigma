@@ -61,15 +61,18 @@ Keep motion intentional (2–3 moments). No decorative bounce loops.
 
 ## Components
 
-Canonical UI lives under `components/ui/`. Reuse before inventing:
+Canonical UI lives under `components/ui/`. Reuse before inventing.
+Agent-readable Figma map: [`code-connect/registry.json`](./code-connect/registry.json)
+(see [`docs/figma-code-connect.md`](../../docs/figma-code-connect.md)).
 
-| Component | Path | Job |
-| --- | --- | --- |
-| `Button` | `components/ui/button.tsx` | Primary / ghost actions |
-| `Stack` | `components/ui/stack.tsx` | Vertical rhythm with token gaps |
+| Component | Path | Code Connect stub | Job |
+| --- | --- | --- | --- |
+| `Button` | `components/ui/button.tsx` | `button.figma.ts` | Primary / ghost actions |
+| `Stack` | `components/ui/stack.tsx` | `stack.figma.ts` | Vertical rhythm with token gaps |
 
 Hard rule: **do not invent a second Button**. Extend the existing one or open
-an issue / `learn-taste` note.
+an issue / `learn-taste` note. Sync Figma variables ↔ tokens with
+`/figma-sync`.
 
 ## Craft anti-slop (minimum)
 

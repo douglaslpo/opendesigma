@@ -14,6 +14,7 @@ Metamodel adapted from [emilkowalski/skills](https://github.com/emilkowalski/ski
 | [`prototype`](prototype/) | flow | Divergent variants + picker (`PICKER.md`) |
 | [`pick-stack`](pick-stack/) | builder | Curated web libs / primitives |
 | [`scaffold-web`](scaffold-web/) | builder | Next + React + Tailwind + `DESIGN.md` |
+| [`figma-sync`](figma-sync/) | builder | Figma/Code Connect + tokens (`MAP.md`, `TOKENS.md`) |
 | [`break-ui`](break-ui/) | gate | Worst-case data (`CATALOG.md`) |
 | [`review-ui`](review-ui/) | gate | Craft / DS / a11y smoke (`STANDARDS.md`) |
 | [`ship-preview`](ship-preview/) | flow | Shareable preview and/or PR ([preview host](../packages/preview-host/)) |
@@ -66,10 +67,13 @@ installer.
 ask-desigma
   → prototype (+ picker / promote)
   → pick-stack → scaffold-web
+  → figma-sync          (when Figma / DS map matters)
   → break-ui → review-ui
   → ship-preview
   → learn-taste → DESIGN.md
 ```
+
+Figma bridge guide: [`../docs/figma-code-connect.md`](../docs/figma-code-connect.md).
 
 ## Companions
 
@@ -78,6 +82,7 @@ ask-desigma
 | `PICKER.md` | prototype | Verbatim harness chrome |
 | `CATALOG.md` | break-ui | Worst-case values |
 | `STANDARDS.md` | review-ui | Exact craft values |
+| `MAP.md` / `TOKENS.md` | figma-sync | Registry schema + variable map |
 
 ## Attribution
 

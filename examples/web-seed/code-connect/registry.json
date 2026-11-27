@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "preferRegistry": true,
+  "designMd": "DESIGN.md",
+  "tokens": "tokens.css",
+  "docs": "../../docs/figma-code-connect.md",
+  "components": [
+    {
+      "id": "button",
+      "export": "Button",
+      "source": "components/ui/button.tsx",
+      "import": "import { Button } from \"@/components/ui\"",
+      "figmaUrl": null,
+      "template": "components/ui/button.figma.ts",
+      "props": {
+        "variant": ["primary", "ghost"],
+        "children": "ReactNode",
+        "disabled": "boolean"
+      },
+      "notes": "Canonical CTA — never invent a second Button"
+    },
+    {
+      "id": "stack",
+      "export": "Stack",
+      "source": "components/ui/stack.tsx",
+      "import": "import { Stack } from \"@/components/ui\"",
+      "figmaUrl": null,
+      "template": "components/ui/stack.figma.ts",
+      "props": {
+        "gap": [1, 2, 3, 4, 6, 8, 12, 16],
+        "children": "ReactNode"
+      },
+      "notes": "Vertical rhythm keyed to DESIGN.md spacing scale"
+    }
+  ]
+}

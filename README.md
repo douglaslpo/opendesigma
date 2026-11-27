@@ -19,6 +19,9 @@ web/mobile creation. This repository ships:
 7. **Preview host** — static share URL for `ship-preview` / `prototype`
    (Opção A shell). See [`packages/preview-host/`](packages/preview-host/)
    and [`docs/preview-host.md`](docs/preview-host.md).
+8. **Figma / Code Connect bridge** — map web-seed components + tokens for
+   agents (`figma-sync`). See [`docs/figma-code-connect.md`](docs/figma-code-connect.md)
+   and [`examples/web-seed/code-connect/`](examples/web-seed/code-connect/).
 
 Kernel based on [desigma](https://github.com/deepfounder-ai/desigma). Skill
 metamodel adapted from [emilkowalski/skills](https://github.com/emilkowalski/skills)
@@ -42,6 +45,7 @@ Then invoke `/ask-desigma` (router) or a specific skill (`/prototype`,
 | `prototype` | Divergent variants + picker |
 | `pick-stack` | Curated web libraries |
 | `scaffold-web` | Next/React/Tailwind + `DESIGN.md` |
+| `figma-sync` | Figma/Code Connect + token sync |
 | `break-ui` | Worst-case data stress |
 | `review-ui` | Craft / DS / a11y gate |
 | `ship-preview` | Preview URL and/or PR |
@@ -58,8 +62,12 @@ pnpm dev      # http://localhost:3000
 pnpm build
 ```
 
-Read [`examples/web-seed/DESIGN.md`](examples/web-seed/DESIGN.md) before UI
-work. Run MVP outcome checks from the repo root:
+Read [`examples/web-seed/DESIGN.md`](examples/web-seed/DESIGN.md) and
+[`examples/web-seed/code-connect/registry.json`](examples/web-seed/code-connect/registry.json)
+before UI work. Figma bridge:
+[`docs/figma-code-connect.md`](docs/figma-code-connect.md).
+
+Run MVP outcome checks from the repo root:
 
 ```sh
 cd examples/web-seed && pnpm install && cd ../..

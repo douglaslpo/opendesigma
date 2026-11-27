@@ -34,13 +34,16 @@ em codebase existente e o **router** (esta skill).
 3. **App/site ainda não existe (ou greenfield web)?** → **`scaffold-web`**.
    Next.js + React + Tailwind + `DESIGN.md`/tokens como default do produto.
 
-4. **Quebrar com dados ruins** → **`break-ui`** (worst-case + toggle).
+4. **Figma / Code Connect / tokens↔variables / mapear DS?** → **`figma-sync`**.
+   Registry + stubs; preferência obrigatória por `components/ui`.
 
-5. **Review de craft/UI** → **`review-ui`** (default a flaggar; aprovação se ganha).
+5. **Quebrar com dados ruins** → **`break-ui`** (worst-case + toggle).
 
-6. **Preview compartilhável / PR / promote** → **`ship-preview`**.
+6. **Review de craft/UI** → **`review-ui`** (default a flaggar; aprovação se ganha).
 
-7. **Fechar a sessão de taste** → **`learn-taste`** → regras em `DESIGN.md`
+7. **Preview compartilhável / PR / promote** → **`ship-preview`**.
+
+8. **Fechar a sessão de taste** → **`learn-taste`** → regras em `DESIGN.md`
    (só com aprovação humana).
 
 Orquestrado (harness / worker sem humano no chat): pule o quiet-gate das skills
@@ -61,6 +64,7 @@ filhas e vá direto à Phase 1; preserve propose-then-stop nos nós de taste
 | --- | --- |
 | Preferências da sessão sumiram? | `learn-taste` |
 | Stack inconsistente / lib inventada? | `pick-stack` |
+| Drift Figma ↔ tokens / componentes sem map? | `figma-sync` |
 | Preview stale / precisa re-ship | `ship-preview` |
 
 (Triad find-polish / audit-craft / remove-clutter e packs mobile/motion = later.)
@@ -72,6 +76,7 @@ filhas e vá direto à Phase 1; preserve propose-then-stop nos nós de taste
 | "Me dá umas opções" / "não sei o look" | `prototype` |
 | "Qual lib usar?" / "não reinventa toast" | `pick-stack` |
 | "Cria o app Next" / "scaffolda o projeto" | `scaffold-web` |
+| "Figma" / "Code Connect" / "sincroniza tokens" | `figma-sync` |
 | "Tenta o pior caso" / "stress test" | `break-ui` |
 | "Isso tá bom?" / "review a UI" | `review-ui` |
 | "Manda preview" / "abre PR" / "ship" | `ship-preview` |
