@@ -34,6 +34,9 @@ Kernel based on [desigma](https://github.com/deepfounder-ai/desigma). Skill
 metamodel adapted from [emilkowalski/skills](https://github.com/emilkowalski/skills)
 (MIT). See `NOTICE`, `UPSTREAM.md`, `LICENSE-MIT`, and `LICENSE-APACHE`.
 
+**Quickstart (pt-BR):** skills + Context7 + preview host + seeds + fluxo
+`ask-desigma` + Design Jury — [`docs/quickstart.md`](docs/quickstart.md).
+
 ## Agent skills (quick start)
 
 ```sh
