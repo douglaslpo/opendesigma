@@ -6,7 +6,7 @@ web/mobile creation. This repository ships:
 1. **Headless Rust design kernel** — document IR, layout, CPU render,
    import/export, pixel diff, local MCP (no egui chrome).
 2. **P0 Agent Skills** — router + main flow (prototype → scaffold → gates →
-   ship → taste). See [`skills/README.md`](skills/README.md).
+   Design Jury → ship → taste). See [`skills/README.md`](skills/README.md).
 3. **Harness overlay (docs)** — how those skills sit on
    [douglaslpo/harness](https://github.com/douglaslpo/harness) SDD phases.
    See [`harness-overlay/README.md`](harness-overlay/README.md).
@@ -15,7 +15,8 @@ web/mobile creation. This repository ships:
 5. **Mobile seed** — Expo + React Native + shared token grammar.
    See [`examples/mobile-seed/`](examples/mobile-seed/) and
    [`docs/mobile-path.md`](docs/mobile-path.md) (App Store = Later).
-6. **Evals** — DS reuse + build smoke + mobile-path fixtures. See [`evals/`](evals/).
+6. **Evals** — DS reuse + DS lint + build smoke + mobile-path fixtures. See
+   [`evals/`](evals/).
 7. **Context7 stack map** — pinned library IDs for docs retrieval.
    See [`docs/context7-stack.md`](docs/context7-stack.md) /
    [`context7.json`](context7.json).
@@ -25,6 +26,9 @@ web/mobile creation. This repository ships:
 9. **Figma / Code Connect bridge** — map web-seed components + tokens for
    agents (`figma-sync`). See [`docs/figma-code-connect.md`](docs/figma-code-connect.md)
    and [`examples/web-seed/code-connect/`](examples/web-seed/code-connect/).
+10. **Design Jury + DS lint** — scored quality gate + mechanical token/
+    component checks. See [`docs/design-jury.md`](docs/design-jury.md),
+    [`skills/design-jury/`](skills/design-jury/), [`tools/ds-lint/`](tools/ds-lint/).
 
 Kernel based on [desigma](https://github.com/deepfounder-ai/desigma). Skill
 metamodel adapted from [emilkowalski/skills](https://github.com/emilkowalski/skills)
@@ -53,6 +57,7 @@ notes: [`skills/README.md`](skills/README.md).
 | `figma-sync` | Figma/Code Connect + token sync |
 | `break-ui` | Worst-case data stress |
 | `review-ui` | Craft / DS / a11y gate |
+| `design-jury` | Scored DS + a11y + anti-slop |
 | `ship-preview` | Preview URL and/or PR |
 | `learn-taste` | Persist corrections → `DESIGN.md` |
 
@@ -88,11 +93,12 @@ Run MVP outcome checks from the repo root:
 ```sh
 cd examples/web-seed && pnpm install && cd ../..
 node evals/run.mjs
-# node evals/run.mjs --skip-build   # includes mobile-path smoke
+# node evals/run.mjs --skip-build   # includes mobile-path + ds-lint
+node tools/ds-lint/ds-lint.mjs      # mechanical DS lint only
 ```
 
-Details: [`evals/README.md`](evals/README.md). Context7 IDs:
-[`docs/context7-stack.md`](docs/context7-stack.md).
+Details: [`evals/README.md`](evals/README.md), [`docs/design-jury.md`](docs/design-jury.md).
+Context7 IDs: [`docs/context7-stack.md`](docs/context7-stack.md).
 
 ## Preview host (Cursor-centric)
 

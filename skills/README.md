@@ -19,6 +19,7 @@ Metamodel adapted from [emilkowalski/skills](https://github.com/emilkowalski/ski
 | [`figma-sync`](figma-sync/) | builder | Figma/Code Connect + tokens (`MAP.md`, `TOKENS.md`) |
 | [`break-ui`](break-ui/) | gate | Worst-case data (`CATALOG.md`) |
 | [`review-ui`](review-ui/) | gate | Craft / DS / a11y smoke (`STANDARDS.md`) |
+| [`design-jury`](design-jury/) | gate | Scored DS + a11y + anti-slop (`RUBRIC.md`, `ANTI-SLOP.md`) |
 | [`ship-preview`](ship-preview/) | flow | Shareable preview and/or PR ([preview host](../packages/preview-host/)) |
 | [`learn-taste`](learn-taste/) | upkeep | Persist corrections → `DESIGN.md` |
 
@@ -71,13 +72,14 @@ ask-desigma
   → pick-stack → scaffold-web | scaffold-mobile
   → mobile-feel             (Expo / RN screens)
   → figma-sync              (when Figma / DS map matters)
-  → break-ui → review-ui
+  → break-ui → review-ui → design-jury
   → ship-preview
   → learn-taste → DESIGN.md
 ```
 
 Figma bridge: [`../docs/figma-code-connect.md`](../docs/figma-code-connect.md).  
-Mobile path: [`../docs/mobile-path.md`](../docs/mobile-path.md) (store = Later).
+Mobile path: [`../docs/mobile-path.md`](../docs/mobile-path.md) (store = Later).  
+Design Jury / DS lint: [`../docs/design-jury.md`](../docs/design-jury.md).
 
 ## Companions
 
@@ -86,6 +88,7 @@ Mobile path: [`../docs/mobile-path.md`](../docs/mobile-path.md) (store = Later).
 | `PICKER.md` | prototype | Verbatim harness chrome |
 | `CATALOG.md` | break-ui | Worst-case values |
 | `STANDARDS.md` | review-ui | Exact craft values |
+| `RUBRIC.md` / `ANTI-SLOP.md` | design-jury | Score seats + anti-slop checklist |
 | `MAP.md` / `TOKENS.md` | figma-sync | Registry schema + variable map |
 
 ## Attribution

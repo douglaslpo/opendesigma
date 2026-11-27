@@ -4,8 +4,9 @@ description: >
   Review UI craft against a high bar — hierarchy, tokens/DS reuse, spacing,
   interaction, motion, and a11y smoke. Default to flagging; approval is earned.
   Use when the user asks to review UI, critique a screen, "isso tá bom?", or
-  gate before ship. For data edge cases use break-ui; for variants use
-  prototype; for motion-only deep dive still use this skill's STANDARDS.md.
+  gate before ship. For structured ship/no-ship scorecard use design-jury; for
+  data edge cases use break-ui; for variants use prototype; for motion-only
+  deep dive still use this skill's STANDARDS.md.
 disable-model-invocation: true
 layer: gate
 surfaces: [both]
@@ -25,7 +26,8 @@ Do not provide more until the user asks. **Modo orquestrado:** vá à Phase 1.
 
 It does ONE thing: review UI against craft + DS adherence. It does not build
 variants (`prototype`), stress data (`break-ui`), scaffold (`scaffold-web`),
-or persist taste (`learn-taste`).
+persist taste (`learn-taste`), or own the formal scorecard (`design-jury` —
+use that for ship/no-ship + `ds-lint` evidence).
 
 ## Operating Posture
 
@@ -75,6 +77,8 @@ project `DESIGN.md` / tokens when they exist; otherwise use STANDARDS defaults.
 2. **Recon** — `DESIGN.md`, tokens, component registry, stack.
 3. **Pass** — walk standards + STANDARDS.md; screenshot if possible.
 4. **Report** — findings table + verdict; stop unless asked to fix.
+5. **Escalate** — if the user wants a scored gate or lint evidence, hand off to
+   `/design-jury` (and `node tools/ds-lint/ds-lint.mjs`).
 
 ## Required Output Format
 

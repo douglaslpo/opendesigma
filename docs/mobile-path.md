@@ -26,7 +26,7 @@ ask-desigma
   → pick-stack         (confirm Expo, not Next)
   → scaffold-mobile    (or copy examples/mobile-seed)
   → mobile-feel
-  → break-ui → review-ui
+  → break-ui → review-ui → design-jury
   → ship-preview       (preview / PR; not store)
   → learn-taste
 ```
