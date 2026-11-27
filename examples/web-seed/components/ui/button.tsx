@@ -17,6 +17,8 @@ const variants: Record<Variant, string> = {
 /**
  * Canonical action control. Agents must reuse this instead of inventing
  * another button with one-off hex styles.
+ *
+ * Code Connect stub: `./button.figma.ts` · registry: `code-connect/registry.json`
  */
 export function Button({
   variant = "primary",

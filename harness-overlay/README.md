@@ -14,7 +14,7 @@ core do harness (listas hardcoded ficam para v1 skill-packs).
 | --- | --- | --- |
 | `explore` / investigator | `ask-desigma` | Router de intent de produto |
 | `propose` | `prototype` (se look aberto), critérios visuais no design.md do change | HITL no taste |
-| `apply` / implementer | `pick-stack`, `scaffold-web`, promote de `prototype` | Codegen com DS |
+| `apply` / implementer | `pick-stack`, `scaffold-web`, `figma-sync`, promote de `prototype` | Codegen com DS / Code Connect |
 | `test` | smoke do app scaffoldado | — |
 | `verify` | `break-ui`, `review-ui` | Gates visuais além de CA/CR texto |
 | `review` / auditor | `review-ui` | Complementa checklist harness |

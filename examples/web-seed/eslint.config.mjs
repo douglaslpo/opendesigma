@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Code Connect templates (Figma CLI types; not part of the Next app)
+    "**/*.figma.ts",
   ]),
 ]);
 

@@ -1,8 +1,10 @@
 # AGENTS.md — OpenDesigma web seed
 
-**Before building or changing UI, read [`DESIGN.md`](./DESIGN.md).** Prefer
+**Before building or changing UI, read [`DESIGN.md`](./DESIGN.md) and
+[`code-connect/registry.json`](./code-connect/registry.json).** Prefer
 `tokens.css` variables and `components/ui/*` over inventing styles or a second
-Button.
+Button. Figma bridge: [`docs/figma-code-connect.md`](../../docs/figma-code-connect.md)
++ skill `figma-sync`.
 
 ## Stack
 
@@ -19,8 +21,8 @@ Resolve→query before codegen against unfamiliar APIs.
 ## OpenDesigma skills
 
 From the repo root skills pack: `ask-desigma` → `prototype` → `scaffold-web`
-(already applied here) → `break-ui` → `review-ui` → `ship-preview` →
-`learn-taste`.
+(already applied here) → `figma-sync` (when Figma/DS map matters) →
+`break-ui` → `review-ui` → `ship-preview` → `learn-taste`.
 
 <!-- BEGIN:nextjs-agent-rules -->
 

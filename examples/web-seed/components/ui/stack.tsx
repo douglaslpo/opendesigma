@@ -18,7 +18,10 @@ const gapClass: Record<Gap, string> = {
   16: "gap-16",
 };
 
-/** Vertical rhythm helper keyed to the DESIGN.md spacing scale. */
+/**
+ * Vertical rhythm helper keyed to the DESIGN.md spacing scale.
+ * Code Connect stub: `./stack.figma.ts` · registry: `code-connect/registry.json`
+ */
 export function Stack({
   gap = 4,
   className = "",

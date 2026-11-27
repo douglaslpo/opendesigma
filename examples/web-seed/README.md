@@ -26,6 +26,9 @@ pnpm lint
 | `tokens.css` | Color / type / space / motion tokens |
 | `app/` | App Router entry (`layout`, `page`, `globals.css`) |
 | `components/ui/` | Thin DS primitives (`Button`, `Stack`) — **reuse these** |
+| `code-connect/` | Agent-readable Figma↔code registry (stubs) |
+| `*.figma.ts` | Code Connect templates (excluded from `tsc`/Next) |
+| `figma.config.json` | Code Connect CLI include globs |
 | `AGENTS.md` | Pointer for coding agents |
 
 ## Design rules (short)
@@ -34,6 +37,12 @@ pnpm lint
 2. Use `var(--color-*)` / Tailwind aliases — no one-off hex in components.
 3. Do not invent a second Button; extend `components/ui/button.tsx`.
 
+## Figma / Code Connect
+
+Minimal bridge (Should): local registry + `.figma.ts` stubs. Fill real Figma
+URLs and run `/figma-sync` / `npx figma connect publish` when a file exists.
+Guide: [`docs/figma-code-connect.md`](../../docs/figma-code-connect.md).
+
 ## Not included
 
-Auth, database, mobile/Expo, Figma Code Connect. Those land in later packs.
+Auth, database, mobile/Expo, live Figma publish automation.
