@@ -10,9 +10,22 @@ Mechanical Design System checks for OpenDesigma scaffolds (default:
 | --- | --- | --- |
 | `invalid-token` | blocker | `var(--x)` not defined in `tokens.css` / globals |
 | `invented-component` | blocker | Protected primitive exported outside `components/ui` |
-| `registry-missing-export` | blocker | `code-connect/registry.json` lists export not in UI |
+| `registry-missing-path` | blocker | `source` path missing (`designMd` / `tokens` fields are `should`) |
+| `registry-missing-export` | blocker | `export` is not exported by that source file |
+| `registry-barrel-missing` | blocker | Import targets `components/ui` but the barrel does not re-export |
+| `registry-missing-template` | blocker | `template` is set and the file is missing |
 | `registry-missing` | should | No registry file |
+| `token-drift` | blocker | Shared color / space / motion differs from `examples/mobile-seed/tokens.ts` |
 | `raw-hex` | nit | `#rgb` / `#rrggbb` outside `tokens.css` |
+
+Canonical token file: `examples/web-seed/tokens.css`. Native exceptions
+(type faces, ease curve, rem vs px, button padding) are reported, not failed.
+See [`docs/token-semantics.md`](../../docs/token-semantics.md). Fixtures live in
+`tools/ds-lint/fixtures/` (`accepted/` passes, `rejected/` does not).
+
+```sh
+node --test tools/ds-lint/ds-lint.test.mjs
+```
 
 `ok` / exit `0` requires **zero blockers**. Should/nit findings still print for
 agents and Design Jury.

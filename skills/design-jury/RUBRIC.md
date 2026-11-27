@@ -30,8 +30,10 @@ registry; `var(--unknown-*)`; second `Button` export outside `components/ui`.
 | 1 | Keyboard / screen-reader path unusable on primary actions |
 | 0 | No interactive surface to evaluate |
 
-MVP mechanical cues (web-seed): `lang` on `<html>`, Button `type="button"`,
-`focus-visible` styles — see eval `a11y-smoke` and `tools/ds-lint` a11y hints.
+MVP source cues (web-seed): `lang` on `<html>`, Button `type="button"`,
+`focus-visible`, `prefers-reduced-motion` — eval `a11y-smoke`. That file
+does not open a browser. Keyboard, focus, name, contrast, and feedback:
+`node tools/ds-jury/run.mjs --browser` against `app/ds-review`.
 
 ## Craft / anti-slop (seat)
 

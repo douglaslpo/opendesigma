@@ -3,6 +3,14 @@
 Use during Phase 2. Prefer **CSS custom properties** that already match
 `DESIGN.md` / `tokens.css` in the OpenDesigma web seed.
 
+`examples/web-seed/tokens.css` is the canonical source.
+`examples/mobile-seed/tokens.ts` mirrors shared color, space, and motion.
+Native exceptions (`type-faces`, `ease-curve`, `space-unit`, `button-padding`)
+are listed in [`docs/token-semantics.md`](../../docs/token-semantics.md).
+`node tools/ds-lint/ds-lint.mjs` fails on undeclared drift. Mapping status
+(stub / linked / unmapped, never published without evidence) is in
+[`docs/figma-mapping-status.md`](../../docs/figma-mapping-status.md).
+
 ## Suggested name map
 
 | Repo token | Suggested Figma variable | Kind |

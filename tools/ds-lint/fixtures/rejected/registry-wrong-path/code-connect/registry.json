@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "preferRegistry": true,
+  "tokens": "tokens.css",
+  "components": [
+    {
+      "id": "button",
+      "export": "Button",
+      "source": "components/ui/missing.tsx",
+      "import": "import { Button } from \"@/components/ui\"",
+      "figmaUrl": null,
+      "template": "components/ui/button.figma.ts"
+    }
+  ]
+}

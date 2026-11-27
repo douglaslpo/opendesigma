@@ -14,8 +14,10 @@ monolith — evidence + scorecard, not a 26-agent theater.
 | Skill | [`skills/design-jury/`](../skills/design-jury/) | Scorecard + ship/no-ship |
 | Rubric | `skills/design-jury/RUBRIC.md` | 0–5 seats, threshold 12/15 |
 | Anti-slop | `skills/design-jury/ANTI-SLOP.md` | AI/default UI signatures |
-| Lint CLI | [`tools/ds-lint/`](../tools/ds-lint/) | Invalid tokens / invented primitives |
+| Lint CLI | [`tools/ds-lint/`](../tools/ds-lint/) | Tokens, invented primitives, registry path + export, web/mobile semantics |
+| Jury runner | [`tools/ds-jury/`](../tools/ds-jury/) | break-ui → review-ui → ds-lint → scorecard, plus the browser probe |
 | Eval | `evals/checks/ds-lint.mjs` | Wired into `evals/run.mjs` |
+| Review bench | `examples/web-seed/app/ds-review` | Extreme copy, 320px, large text, empty / error / loading |
 
 ## When to run
 
@@ -35,16 +37,25 @@ jury?” / quality gate → `design-jury`.
 ## Commands
 
 ```sh
-# Mechanical lint (web-seed default)
+# Mechanical lint (web-seed default, compares mobile tokens when the sibling exists)
 node tools/ds-lint/ds-lint.mjs
 node tools/ds-lint/ds-lint.mjs --json
 
+# Fixture + scorecard tests (no browser)
+node --test tools/ds-lint/ds-lint.test.mjs tools/ds-jury/pipeline.test.mjs
+
+# Full pipeline. --browser is the Chrome pass and needs a built web-seed.
+cd examples/web-seed && pnpm install --frozen-lockfile && pnpm build && cd ../..
+node tools/ds-jury/run.mjs --browser --shots /tmp/ds-jury
+
 # Eval slice
 node evals/run.mjs --only ds-lint --skip-build
-
-# Full MVP evals (includes ds-lint)
-node evals/run.mjs --skip-build
 ```
+
+`a11y-smoke` reads source (lang, button type, focus-visible, reduced motion).
+It does not open a browser. Keyboard, focus, accessible name, contrast, and
+feedback are the `--browser` stage. A screen reader is still a manual pass;
+the runner caps A11y at 4 and says so.
 
 ## Verdict rule
 

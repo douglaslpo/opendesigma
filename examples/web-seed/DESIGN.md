@@ -30,6 +30,11 @@ Restrained cool palette — not purple-on-white, not cream+terracotta.
 Do **not** invent hex values in components — use `var(--color-*)` or the
 Tailwind theme aliases (`bg-canvas`, `text-ink`, `bg-accent`, …).
 
+`tokens.css` is the canonical source for web and for the mobile mirror.
+Shared color, space, and motion must match `examples/mobile-seed/tokens.ts`.
+Type faces, the ease curve, rem versus px, and button padding are the native
+exceptions in [`docs/token-semantics.md`](../../docs/token-semantics.md).
+
 ## Typography
 
 | Role | Token / face | Notes |
@@ -58,6 +63,7 @@ in the first viewport.
 | `--ease-out` | `cubic-bezier(0.22, 1, 0.36, 1)` | Default exit curve |
 
 Keep motion intentional (2–3 moments). No decorative bounce loops.
+Honor `prefers-reduced-motion`: keep color, drop movement.
 
 ## Components
 
@@ -69,6 +75,10 @@ Agent-readable Figma map: [`code-connect/registry.json`](./code-connect/registry
 | --- | --- | --- | --- |
 | `Button` | `components/ui/button.tsx` | `button.figma.ts` | Primary / ghost actions |
 | `Stack` | `components/ui/stack.tsx` | `stack.figma.ts` | Vertical rhythm with token gaps |
+
+`app/ds-review` is the jury bench (extreme copy, empty / error / loading).
+It reuses `Button` and `Stack`. It is not a second component. Figma publish
+status: [`docs/figma-mapping-status.md`](../../docs/figma-mapping-status.md).
 
 Hard rule: **do not invent a second Button**. Extend the existing one or open
 an issue / `learn-taste` note. Sync Figma variables ↔ tokens with

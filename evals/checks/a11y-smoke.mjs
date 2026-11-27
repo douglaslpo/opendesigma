@@ -7,9 +7,10 @@ export const title = "A11y smoke (lang, button type, focus)";
 export function run(ctx) {
   const layout = path.join(ctx.seedDir, "app", "layout.tsx");
   const button = path.join(ctx.seedDir, "components", "ui", "button.tsx");
+  const globals = path.join(ctx.seedDir, "app", "globals.css");
 
-  if (!exists(layout) || !exists(button)) {
-    return fail("layout or Button missing for a11y smoke");
+  if (!exists(layout) || !exists(button) || !exists(globals)) {
+    return fail("layout, Button, or globals.css missing for a11y smoke");
   }
 
   const layoutSrc = readText(layout);
@@ -25,5 +26,13 @@ export function run(ctx) {
     return fail("Button should include focus-visible styles");
   }
 
-  return pass("Basic a11y smoke checks passed");
+  const globalsSrc = readText(globals);
+  if (!/prefers-reduced-motion/.test(globalsSrc)) {
+    return fail("globals.css should honor prefers-reduced-motion");
+  }
+
+  return pass("Source a11y smoke passed (not a browser pass)", {
+    layer: "source",
+    browser: "node tools/ds-jury/run.mjs --browser",
+  });
 }

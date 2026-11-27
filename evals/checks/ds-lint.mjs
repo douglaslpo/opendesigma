@@ -1,6 +1,6 @@
 import path from "node:path";
 import { pathToFileURL } from "node:url";
-import { fail, pass } from "../lib/fs.mjs";
+import { exists, fail, pass } from "../lib/fs.mjs";
 
 export const id = "ds-lint";
 export const title = "DS lint (tokens + invented components)";
@@ -8,7 +8,10 @@ export const title = "DS lint (tokens + invented components)";
 export async function run(ctx) {
   const lintPath = path.join(ctx.root, "tools", "ds-lint", "ds-lint.mjs");
   const mod = await import(pathToFileURL(lintPath).href);
-  const result = mod.lintSeed(ctx.seedDir);
+  const mobileTokens = path.join(ctx.root, "examples", "mobile-seed", "tokens.ts");
+  const result = mod.lintSeed(ctx.seedDir, {
+    mobileTokensPath: exists(mobileTokens) ? mobileTokens : undefined,
+  });
 
   if (!result.ok) {
     const blockers = result.findings.filter((f) => f.severity === "blocker");
@@ -21,5 +24,6 @@ export async function run(ctx) {
   return pass("DS lint clean (no blockers)", {
     summary: result.summary,
     nits: result.findings.filter((f) => f.severity === "nit").map((f) => f.id),
+    tokenDrifts: result.summary.tokenSemantics?.drifts?.length ?? null,
   });
 }

@@ -30,6 +30,12 @@ Same restrained cool palette as web-seed — not purple-on-white, not cream+terr
 
 Do **not** invent hex values in components — import from `tokens.ts`.
 
+Shared values mirror `examples/web-seed/tokens.css`, which is the canonical
+source. Platform exceptions (type faces, ease curve, px versus rem, button
+padding) are in [`docs/token-semantics.md`](../../docs/token-semantics.md).
+This seed has no Code Connect registry; those components stay unmapped until
+a Figma file is authorized.
+
 ## Typography
 
 | Role | Notes |

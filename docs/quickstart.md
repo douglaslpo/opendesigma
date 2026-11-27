@@ -168,8 +168,12 @@ break-ui → review-ui → design-jury → ship-preview
 ```
 
 ```sh
-# Lint mecânico (tokens inválidos / componentes inventados)
+# Lint mecânico (tokens, registry por caminho e export, semântica web/mobile)
 node tools/ds-lint/ds-lint.mjs
+
+# Pipeline break-ui → review-ui → design-jury. O browser é separado do smoke de fonte.
+cd examples/web-seed && pnpm install && pnpm build && cd ../..
+node tools/ds-jury/run.mjs --browser
 
 # Evals MVP (inclui ds-lint; use --skip-build se não precisar buildar)
 cd examples/web-seed && pnpm install && cd ../..
