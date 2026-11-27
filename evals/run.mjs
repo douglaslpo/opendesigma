@@ -17,6 +17,7 @@ const CHECK_MODULES = [
   "./checks/context7-map.mjs",
   "./checks/a11y-smoke.mjs",
   "./checks/mobile-path.mjs",
+  "./checks/backend-path.mjs",
   "./checks/build-smoke.mjs",
 ];
 

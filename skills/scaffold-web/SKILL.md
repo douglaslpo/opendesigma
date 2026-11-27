@@ -56,7 +56,9 @@ repo's documented generator) over hand-rolled file dumps when network allows.
 
 Capture: app name, path (monorepo package vs root), TypeScript (default yes),
 App Router (default yes), Tailwind (default yes), eslint, whether auth/DB are
-in scope (**default: UI-only**).
+in scope (**default: UI-only**). If the user later needs API stubs, hand off
+to `scaffold-backend` (`docs/backend-path.md`) — don't invent a second stack
+here.
 
 Restate in one sentence; confirm if destructive.
 
@@ -111,6 +113,6 @@ Stop. Don't start feature work unless asked.
 
 ## Tone
 
-Be explicit about what was *not* included (auth, CMS, mobile). Offer
-`scaffold-mobile` for Expo/RN and `pick-stack` when the first feature needs a
-specialized lib.
+Be explicit about what was *not* included (auth, CMS, mobile, API). Offer
+`scaffold-mobile` for Expo/RN, `scaffold-backend` for optional Next/Hono API
+stubs, and `pick-stack` when the first feature needs a specialized lib.

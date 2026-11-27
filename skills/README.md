@@ -15,12 +15,13 @@ Metamodel adapted from [emilkowalski/skills](https://github.com/emilkowalski/ski
 | [`pick-stack`](pick-stack/) | builder | Curated libs / primitives (web + mobile pointer) |
 | [`scaffold-web`](scaffold-web/) | builder | Next + React + Tailwind + `DESIGN.md` |
 | [`scaffold-mobile`](scaffold-mobile/) | builder | Expo + RN + `DESIGN.md` / `tokens.ts` |
+| [`scaffold-backend`](scaffold-backend/) | builder | Optional API (Next `app/api` · Hono opt-in) |
 | [`mobile-feel`](mobile-feel/) | gate | Touch / safe area / native feel |
 | [`figma-sync`](figma-sync/) | builder | Figma/Code Connect + tokens (`MAP.md`, `TOKENS.md`) |
 | [`break-ui`](break-ui/) | gate | Worst-case data (`CATALOG.md`) |
 | [`review-ui`](review-ui/) | gate | Craft / DS / a11y smoke (`STANDARDS.md`) |
 | [`design-jury`](design-jury/) | gate | Scored DS + a11y + anti-slop (`RUBRIC.md`, `ANTI-SLOP.md`) |
-| [`ship-preview`](ship-preview/) | flow | Shareable preview and/or PR ([preview host](../packages/preview-host/)) |
+| [`ship-preview`](ship-preview/) | flow | Shareable preview and/or PR + light round-trip ([preview host](../packages/preview-host/), [`ROUNDTRIP.md`](ship-preview/ROUNDTRIP.md)) |
 | [`learn-taste`](learn-taste/) | upkeep | Persist corrections → `DESIGN.md` |
 
 Schema extras in frontmatter (`layer`, `surfaces`, `artifacts`) are
@@ -70,15 +71,18 @@ installer.
 ask-desigma
   → prototype (+ picker / promote)
   → pick-stack → scaffold-web | scaffold-mobile
+  → scaffold-backend        (optional API stubs)
   → mobile-feel             (Expo / RN screens)
   → figma-sync              (when Figma / DS map matters)
   → break-ui → review-ui → design-jury
-  → ship-preview
+  → ship-preview            (+ round-trip preview→PR)
   → learn-taste → DESIGN.md
 ```
 
 Figma bridge: [`../docs/figma-code-connect.md`](../docs/figma-code-connect.md).  
 Mobile path: [`../docs/mobile-path.md`](../docs/mobile-path.md) (store = Later).  
+Backend path: [`../docs/backend-path.md`](../docs/backend-path.md) (UI-only default).  
+Round-trip: [`../docs/round-trip.md`](../docs/round-trip.md).  
 Design Jury / DS lint: [`../docs/design-jury.md`](../docs/design-jury.md).
 
 ## Companions
@@ -90,6 +94,7 @@ Design Jury / DS lint: [`../docs/design-jury.md`](../docs/design-jury.md).
 | `STANDARDS.md` | review-ui | Exact craft values |
 | `RUBRIC.md` / `ANTI-SLOP.md` | design-jury | Score seats + anti-slop checklist |
 | `MAP.md` / `TOKENS.md` | figma-sync | Registry schema + variable map |
+| `ROUNDTRIP.md` | ship-preview | Promote preview → commit/PR |
 
 ## Attribution
 

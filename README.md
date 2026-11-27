@@ -15,18 +15,22 @@ web/mobile creation. This repository ships:
 5. **Mobile seed** — Expo + React Native + shared token grammar.
    See [`examples/mobile-seed/`](examples/mobile-seed/) and
    [`docs/mobile-path.md`](docs/mobile-path.md) (App Store = Later).
-6. **Evals** — DS reuse + DS lint + build smoke + mobile-path fixtures. See
-   [`evals/`](evals/).
-7. **Context7 stack map** — pinned library IDs for docs retrieval.
+6. **API seed (optional)** — Next App Router health/echo stubs.
+   See [`examples/api-seed/`](examples/api-seed/) and
+   [`docs/backend-path.md`](docs/backend-path.md) (UI-only remains default).
+7. **Evals** — DS reuse + DS lint + build smoke + mobile/backend path fixtures.
+   See [`evals/`](evals/).
+8. **Context7 stack map** — pinned library IDs for docs retrieval.
    See [`docs/context7-stack.md`](docs/context7-stack.md) /
    [`context7.json`](context7.json).
-8. **Preview host** — static share URL for `ship-preview` / `prototype`
+9. **Preview host** — static share URL for `ship-preview` / `prototype`
    (Opção A shell). See [`packages/preview-host/`](packages/preview-host/)
-   and [`docs/preview-host.md`](docs/preview-host.md).
-9. **Figma / Code Connect bridge** — map web-seed components + tokens for
-   agents (`figma-sync`). See [`docs/figma-code-connect.md`](docs/figma-code-connect.md)
-   and [`examples/web-seed/code-connect/`](examples/web-seed/code-connect/).
-10. **Design Jury + DS lint** — scored quality gate + mechanical token/
+   and [`docs/preview-host.md`](docs/preview-host.md). Light preview→PR
+   round-trip: [`docs/round-trip.md`](docs/round-trip.md).
+10. **Figma / Code Connect bridge** — map web-seed components + tokens for
+    agents (`figma-sync`). See [`docs/figma-code-connect.md`](docs/figma-code-connect.md)
+    and [`examples/web-seed/code-connect/`](examples/web-seed/code-connect/).
+11. **Design Jury + DS lint** — scored quality gate + mechanical token/
     component checks. See [`docs/design-jury.md`](docs/design-jury.md),
     [`skills/design-jury/`](skills/design-jury/), [`tools/ds-lint/`](tools/ds-lint/).
 
@@ -56,12 +60,13 @@ notes: [`skills/README.md`](skills/README.md).
 | `pick-stack` | Curated libraries (web + mobile pointer) |
 | `scaffold-web` | Next/React/Tailwind + `DESIGN.md` |
 | `scaffold-mobile` | Expo/RN + `DESIGN.md` / `tokens.ts` |
+| `scaffold-backend` | Optional API (Next `app/api` · Hono opt-in) |
 | `mobile-feel` | Touch / safe area / native feel |
 | `figma-sync` | Figma/Code Connect + token sync |
 | `break-ui` | Worst-case data stress |
 | `review-ui` | Craft / DS / a11y gate |
 | `design-jury` | Scored DS + a11y + anti-slop |
-| `ship-preview` | Preview URL and/or PR |
+| `ship-preview` | Preview URL and/or PR (+ round-trip) |
 | `learn-taste` | Persist corrections → `DESIGN.md` |
 
 ## Web seed + evals
@@ -91,12 +96,24 @@ npm install
 npx expo start
 ```
 
+## API seed (optional backend)
+
+Optional Next route handlers for `scaffold-backend`. **UI-only remains the
+default.** Guide: [`docs/backend-path.md`](docs/backend-path.md).
+
+```sh
+cd examples/api-seed
+pnpm install
+pnpm dev
+curl -s http://127.0.0.1:3000/api/health
+```
+
 Run MVP outcome checks from the repo root:
 
 ```sh
 cd examples/web-seed && pnpm install && cd ../..
 node evals/run.mjs
-# node evals/run.mjs --skip-build   # includes mobile-path + ds-lint
+# node evals/run.mjs --skip-build   # includes mobile-path + backend-path + ds-lint
 node tools/ds-lint/ds-lint.mjs      # mechanical DS lint only
 ```
 
@@ -115,7 +132,8 @@ node packages/preview-host/bin/preview-host.mjs --root packages/preview-host/pub
 
 Point `--root` at Next `out/` or prototype HTML. Skills `ship-preview` and
 `prototype` prefer this path. Full spec:
-[`docs/preview-host.md`](docs/preview-host.md).
+[`docs/preview-host.md`](docs/preview-host.md). Promote → commit/PR:
+[`docs/round-trip.md`](docs/round-trip.md).
 
 ## What’s in the kernel workspace
 

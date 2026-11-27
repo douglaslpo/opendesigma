@@ -38,21 +38,27 @@ em codebase existente e o **router** (esta skill).
    `examples/mobile-seed`). Depois **`mobile-feel`**. App Store/Play = Later
    (`docs/mobile-path.md`).
 
-5. **Figma / Code Connect / tokens↔variables / mapear DS?** → **`figma-sync`**.
+5. **API / backend / health stubs?** → **`scaffold-backend`** (opt-in; default
+   Next route handlers, seed `examples/api-seed`). Path só-UI permanece o
+   default — não force backend. Auth/DB produto = Later
+   (`docs/backend-path.md`).
+
+6. **Figma / Code Connect / tokens↔variables / mapear DS?** → **`figma-sync`**.
    Registry + stubs; preferência obrigatória por `components/ui`.
 
-6. **Quebrar com dados ruins** → **`break-ui`** (worst-case + toggle).
+7. **Quebrar com dados ruins** → **`break-ui`** (worst-case + toggle).
 
-7. **Review de craft/UI** → **`review-ui`** (default a flaggar; aprovação se ganha).
+8. **Review de craft/UI** → **`review-ui`** (default a flaggar; aprovação se ganha).
    Em telas Expo, rode também **`mobile-feel`**.
 
-8. **Gate de qualidade / “passa no jury?”** → **`design-jury`** (DS + a11y +
+9. **Gate de qualidade / “passa no jury?”** → **`design-jury`** (DS + a11y +
    anti-slop scorecard; rode `tools/ds-lint` como evidência). Depois de
    `break-ui` / `review-ui` quando o pedido for veredito ship/no-ship.
 
-9. **Preview compartilhável / PR / promote** → **`ship-preview`**.
+10. **Preview compartilhável / PR / promote** → **`ship-preview`** (+
+    round-trip leve em `docs/round-trip.md`).
 
-10. **Fechar a sessão de taste** → **`learn-taste`** → regras em `DESIGN.md`
+11. **Fechar a sessão de taste** → **`learn-taste`** → regras em `DESIGN.md`
     (só com aprovação humana).
 
 Orquestrado (harness / worker sem humano no chat): pule o quiet-gate das skills
@@ -76,9 +82,10 @@ filhas e vá direto à Phase 1; preserve propose-then-stop nos nós de taste
 | --- | --- |
 | Preferências da sessão sumiram? | `learn-taste` |
 | Stack inconsistente / lib inventada? | `pick-stack` |
+| Precisa de API stubs / health / echo? | `scaffold-backend` |
 | Drift Figma ↔ tokens / componentes sem map? | `figma-sync` |
 | Feel nativo Expo / RN fraco? | `mobile-feel` |
-| Preview stale / precisa re-ship | `ship-preview` |
+| Preview stale / precisa re-ship / round-trip PR | `ship-preview` |
 
 (Triad find-polish / audit-craft / remove-clutter e pack motion = later.
 Store pipeline mobile = Later — ver `docs/mobile-path.md`.)
@@ -91,6 +98,7 @@ Store pipeline mobile = Later — ver `docs/mobile-path.md`.)
 | "Qual lib usar?" / "não reinventa toast" | `pick-stack` |
 | "Cria o app Next" / "scaffolda o projeto" | `scaffold-web` |
 | "Cria o app Expo" / "scaffold mobile" / "React Native" | `scaffold-mobile` |
+| "API" / "backend" / "route handlers" / "health endpoint" | `scaffold-backend` |
 | "Parece web no celular" / "hit target" / "safe area" | `mobile-feel` |
 | "Figma" / "Code Connect" / "sincroniza tokens" | `figma-sync` |
 | "Tenta o pior caso" / "stress test" | `break-ui` |
@@ -107,7 +115,8 @@ Quando o ciclo SDD do harness estiver ativo (`propose` → `apply` → …):
 - **Brief / specs / critérios visuais** → proposer; depois `prototype` se o look
   ainda for aberto.
 - **Implementação de tasks de código** → implementer; builders
-  (`pick-stack`, `scaffold-web`, `scaffold-mobile`) alimentam o escopo.
+  (`pick-stack`, `scaffold-web`, `scaffold-mobile`, `scaffold-backend`)
+  alimentam o escopo.
 - **Verify / review** → validator/auditor + gates `break-ui` / `review-ui` /
   `design-jury` (lint `tools/ds-lint`).
 - **Archive / PR** → `ship-preview` + fluxo harness de PR.
