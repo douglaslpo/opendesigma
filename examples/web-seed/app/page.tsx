@@ -9,7 +9,7 @@ export default function Home() {
       />
       <div className="relative mx-auto flex w-full max-w-3xl flex-1 flex-col justify-center px-6 py-20 sm:px-10">
         <Stack gap={8} className="od-rise max-w-xl">
-          <p className="font-display text-sm font-semibold uppercase tracking-[0.18em] text-accent">
+          <p className="font-display text-sm font-semibold uppercase tracking-[0.18em] text-ink">
             OpenDesigma
           </p>
           <Stack gap={4}>

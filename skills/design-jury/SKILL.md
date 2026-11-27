@@ -60,7 +60,12 @@ Run DS lint when filesystem is available:
 ```sh
 node tools/ds-lint/ds-lint.mjs
 # or: node evals/run.mjs --only ds-lint --skip-build
+# browser (after the web-seed build): node tools/ds-jury/run.mjs --browser
 ```
+
+The source smoke is not the browser pass. Record keyboard, focus, name,
+contrast, and feedback from the runner. Leave screen-reader notes in the
+manual section.
 
 Fold every lint finding into the **DS** seat (blockers unless documented
 exception). If lint cannot run, say so and continue with manual recon — do not

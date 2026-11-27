@@ -9,6 +9,7 @@ export function run(ctx) {
   const button = path.join(seed, "components", "ui", "button.tsx");
   const stack = path.join(seed, "components", "ui", "stack.tsx");
   const page = path.join(seed, "app", "page.tsx");
+  const bench = path.join(seed, "app", "ds-review", "bench.tsx");
 
   if (!exists(button) || !exists(stack)) {
     return fail("Canonical UI primitives missing under components/ui", {
@@ -27,6 +28,17 @@ export function run(ctx) {
   }
   if (!/\bButton\b/.test(pageSrc)) {
     return fail("app/page.tsx should render the canonical Button");
+  }
+
+  if (!exists(bench)) {
+    return fail("app/ds-review/bench.tsx missing");
+  }
+  const benchSrc = readText(bench);
+  if (!/@\/components\/ui/.test(benchSrc)) {
+    return fail("review bench must import components/ui");
+  }
+  if (!/\bButton\b/.test(benchSrc) || !/\bStack\b/.test(benchSrc)) {
+    return fail("review bench must render Button and Stack");
   }
 
   // Detect a second invented Button component outside components/ui.

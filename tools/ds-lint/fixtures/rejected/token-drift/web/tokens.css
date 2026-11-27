@@ -1,0 +1,8 @@
+:root {
+  --color-canvas: #e6eef3;
+  --color-accent: #0c7c72;
+  --space-1: 0.25rem;
+  --motion-fast: 140ms;
+  --font-sans: Georgia, serif;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}

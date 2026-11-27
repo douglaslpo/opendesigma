@@ -1,0 +1,2 @@
+// component=Button
+export {};
