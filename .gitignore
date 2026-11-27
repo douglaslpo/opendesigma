@@ -6,6 +6,13 @@
 /dist
 /.claude/
 
+# Node / Next (web seed + evals)
+node_modules/
+.next/
+*.tsbuildinfo
+.turbo/
+.pnpm-store/
+
 # Figma UI captures: local pixel references only, not redistributed
 /reference/screens/
 

@@ -1,0 +1,51 @@
+{
+  "$schema": "https://context7.com/schema/context7.json",
+  "project": "opendesigma",
+  "description": "Pinned Context7 library IDs for the OpenDesigma default web stack. Prefer these IDs in query-docs; skip resolve when possible.",
+  "rule": "Before codegen against stack libs, query-docs with a pinned libraryId. Prefer DESIGN.md + components/ui over inventing UI.",
+  "libraries": [
+    {
+      "id": "/vercel/next.js",
+      "name": "Next.js",
+      "role": "app-framework",
+      "required": true
+    },
+    {
+      "id": "/reactjs/react.dev",
+      "name": "React",
+      "role": "ui-runtime",
+      "required": true,
+      "fallbackIds": ["/facebook/react"]
+    },
+    {
+      "id": "/tailwindlabs/tailwindcss",
+      "name": "Tailwind CSS",
+      "role": "styling",
+      "required": true
+    },
+    {
+      "id": "/microsoft/typescript",
+      "name": "TypeScript",
+      "role": "language",
+      "required": false
+    },
+    {
+      "id": "/upstash/context7",
+      "name": "Context7",
+      "role": "docs-retrieval",
+      "required": false
+    }
+  ],
+  "companions": [
+    { "id": "/emilkowalski/sonner", "name": "Sonner", "task": "toasts" },
+    { "id": "/emilkowalski/vaul", "name": "Vaul", "task": "drawers" },
+    { "id": "/motiondivision/motion", "name": "Motion", "task": "motion" },
+    { "id": "/recharts/recharts", "name": "Recharts", "task": "charts" },
+    { "id": "/clauderic/dnd-kit", "name": "dnd kit", "task": "drag-and-drop" }
+  ],
+  "localDesignSystem": {
+    "designMd": "examples/web-seed/DESIGN.md",
+    "tokens": "examples/web-seed/tokens.css",
+    "components": "examples/web-seed/components/ui"
+  }
+}
