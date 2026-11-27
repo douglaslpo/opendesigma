@@ -35,12 +35,24 @@ ask-desigma
 
 ```sh
 cd examples/mobile-seed
-npm install
+npm ci          # lockfile — reproducible; npm install only to refresh it
+npm run typecheck
+npx expo export --platform android   # Hermes/JS bundle, no device required
 npx expo start
 ```
 
+`npx expo export --platform ios` also emits a JS bundle on Linux. Running that
+bundle in the iOS Simulator needs macOS and Xcode; that check is separate from
+the Android export. `expo-asset` is a direct dependency (and an app plugin)
+because Metro's export refuses to start without it.
+
+The seed screen is UI-only. The two example actions update visible state
+(prototype started, or a DESIGN.md excerpt). They do not call the API.
+
 Docs retrieval: Context7 IDs `/expo/expo` and `/facebook/react-native` in
-[`context7-stack.md`](./context7-stack.md).
+[`context7-stack.md`](./context7-stack.md). Safe area uses
+`react-native-safe-area-context` at the version `npx expo install` pins for
+this SDK — not the React Native `SafeAreaView`, which does not inset Android.
 
 ## Explicitly Later
 

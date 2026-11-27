@@ -65,6 +65,26 @@ export function run(ctx) {
   if (!/\bButton\b/.test(app)) {
     return fail("App.tsx should render the canonical Button");
   }
+  if (/onPress=\{\(\)\s*=>\s*\{\s*\}\}/.test(app)) {
+    return fail("example screen buttons must change visible state");
+  }
+  if (!/useState/.test(app)) {
+    return fail("App.tsx must keep observable state for the example actions");
+  }
+  if (!/react-native-safe-area-context/.test(app)) {
+    return fail("App.tsx must use react-native-safe-area-context for safe area");
+  }
+  if (/allowFontScaling=\{\s*false\s*\}/.test(app)) {
+    return fail("example screen must allow enlarged text");
+  }
+
+  const button = readText(path.join(mobile, "components", "ui", "button.tsx"));
+  if (!/pressed/.test(button) || !/android_ripple/.test(button)) {
+    return fail("Button must expose press feedback (pressed style and android ripple)");
+  }
+  if (/allowFontScaling=\{\s*false\s*\}/.test(button)) {
+    return fail("Button label must allow enlarged text");
+  }
 
   const pkg = JSON.parse(readText(path.join(mobile, "package.json")));
   if (!pkg.dependencies?.expo) {
@@ -72,6 +92,9 @@ export function run(ctx) {
   }
   if (!pkg.dependencies?.["react-native"]) {
     return fail("mobile-seed package.json must depend on react-native");
+  }
+  if (!pkg.dependencies?.["react-native-safe-area-context"]) {
+    return fail("mobile-seed must depend on react-native-safe-area-context");
   }
 
   const doc = readText(docs);

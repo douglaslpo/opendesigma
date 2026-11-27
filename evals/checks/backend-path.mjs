@@ -19,6 +19,7 @@ export function run(ctx) {
     path.join(api, "package.json"),
     path.join(api, "app", "api", "health", "route.ts"),
     path.join(api, "app", "api", "echo", "route.ts"),
+    path.join(api, "lib", "read-limited-body.mjs"),
     path.join(api, "app", "page.tsx"),
     path.join(api, "AGENTS.md"),
     path.join(api, "README.md"),
@@ -49,6 +50,23 @@ export function run(ctx) {
   }
   if (!/application\/json/.test(echo)) {
     return fail("echo route should check application/json content-type");
+  }
+  if (/request\.(text|json)\(/.test(echo)) {
+    return fail("echo must not buffer the body with request.text() or request.json()");
+  }
+  if (/\.length\s*>\s*MAX_/.test(echo)) {
+    return fail("echo must not compare the byte cap to string length");
+  }
+  if (!/byteLength === 0/.test(echo)) {
+    return fail("echo must define the empty-body (0 bytes) path");
+  }
+  if (!/status:\s*413/.test(echo)) {
+    return fail("echo must reject oversized bodies with 413");
+  }
+
+  const limiter = readText(path.join(api, "lib", "read-limited-body.mjs"));
+  if (!/byteLength/.test(limiter) || !/\.read\(/.test(limiter)) {
+    return fail("byte limit must count octets while reading the stream");
   }
 
   const pkg = JSON.parse(readText(path.join(api, "package.json")));

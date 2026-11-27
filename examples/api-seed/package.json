@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test:body": "node --test lib/read-limited-body.test.mjs",
+    "test:echo": "node scripts/echo-contract.mjs"
   },
   "dependencies": {
     "next": "16.4.6",
