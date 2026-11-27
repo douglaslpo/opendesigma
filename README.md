@@ -10,6 +10,12 @@ web/mobile creation. This repository ships:
 3. **Harness overlay (docs)** — how those skills sit on
    [douglaslpo/harness](https://github.com/douglaslpo/harness) SDD phases.
    See [`harness-overlay/README.md`](harness-overlay/README.md).
+4. **Web seed** — Next.js App Router + Tailwind + `DESIGN.md` + `tokens.css`.
+   See [`examples/web-seed/`](examples/web-seed/).
+5. **Evals** — DS reuse + build smoke fixtures. See [`evals/`](evals/).
+6. **Context7 stack map** — pinned library IDs for docs retrieval.
+   See [`docs/context7-stack.md`](docs/context7-stack.md) /
+   [`context7.json`](context7.json).
 
 Kernel based on [desigma](https://github.com/deepfounder-ai/desigma). Skill
 metamodel adapted from [emilkowalski/skills](https://github.com/emilkowalski/skills)
@@ -38,6 +44,29 @@ Then invoke `/ask-desigma` (router) or a specific skill (`/prototype`,
 | `ship-preview` | Preview URL and/or PR |
 | `learn-taste` | Persist corrections → `DESIGN.md` |
 
+## Web seed + evals
+
+Default greenfield shape for `scaffold-web`:
+
+```sh
+cd examples/web-seed
+pnpm install
+pnpm dev      # http://localhost:3000
+pnpm build
+```
+
+Read [`examples/web-seed/DESIGN.md`](examples/web-seed/DESIGN.md) before UI
+work. Run MVP outcome checks from the repo root:
+
+```sh
+cd examples/web-seed && pnpm install && cd ../..
+node evals/run.mjs
+# node evals/run.mjs --skip-build
+```
+
+Details: [`evals/README.md`](evals/README.md). Context7 IDs:
+[`docs/context7-stack.md`](docs/context7-stack.md).
+
 ## What’s in the kernel workspace
 
 | Crate | Role |
@@ -59,6 +88,7 @@ Crate names keep the upstream identifiers for technical continuity; the
 
 - Rust toolchain pinned in `rust-toolchain.toml` (currently 1.93.1)
 - Standard Linux/macOS/Windows build deps for a Rust workspace (no egui/GPU)
+- Node 20+ / pnpm for `examples/web-seed` and `evals/`
 
 ## Build
 
