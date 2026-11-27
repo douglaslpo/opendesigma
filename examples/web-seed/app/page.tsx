@@ -25,8 +25,13 @@ export default function Home() {
             </p>
           </Stack>
           <div className="flex flex-wrap gap-3 od-rise-delay">
-            <Button>Start prototype</Button>
-            <Button variant="ghost">Read DESIGN.md</Button>
+            <Button href="/prototype">Start prototype</Button>
+            <Button
+              href="https://github.com/douglaslpo/opendesigma/blob/main/examples/web-seed/DESIGN.md"
+              variant="ghost"
+            >
+              Read DESIGN.md
+            </Button>
           </div>
         </Stack>
       </div>

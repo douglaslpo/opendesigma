@@ -13,6 +13,21 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
+### Demo: prototype picker
+
+```sh
+pnpm install
+pnpm dev
+```
+
+1. Open [http://127.0.0.1:3000/prototype](http://127.0.0.1:3000/prototype)
+   (or click **Start prototype** on the home page).
+2. Switch **Calm / Dense / Split** — the reservation preview updates.
+3. Click **Usar variante …** to confirm the pick.
+
+This is a minimal live version of the `/prototype` skill picker, reusing
+`Button` + `Stack` and `DESIGN.md` tokens.
+
 ```sh
 pnpm build   # production smoke
 pnpm lint
@@ -25,6 +40,7 @@ pnpm lint
 | `DESIGN.md` | Agent-readable design grammar |
 | `tokens.css` | Color / type / space / motion tokens |
 | `app/` | App Router entry (`layout`, `page`, `globals.css`) |
+| `app/prototype/` | Interactive Calm/Dense/Split picker demo |
 | `components/ui/` | Thin DS primitives (`Button`, `Stack`) — **reuse these** |
 | `code-connect/` | Agent-readable Figma↔code registry (stubs) |
 | `*.figma.ts` | Code Connect templates (excluded from `tsc`/Next) |
