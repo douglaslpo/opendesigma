@@ -46,10 +46,14 @@ em codebase existente e o **router** (esta skill).
 7. **Review de craft/UI** → **`review-ui`** (default a flaggar; aprovação se ganha).
    Em telas Expo, rode também **`mobile-feel`**.
 
-8. **Preview compartilhável / PR / promote** → **`ship-preview`**.
+8. **Gate de qualidade / “passa no jury?”** → **`design-jury`** (DS + a11y +
+   anti-slop scorecard; rode `tools/ds-lint` como evidência). Depois de
+   `break-ui` / `review-ui` quando o pedido for veredito ship/no-ship.
 
-9. **Fechar a sessão de taste** → **`learn-taste`** → regras em `DESIGN.md`
-   (só com aprovação humana).
+9. **Preview compartilhável / PR / promote** → **`ship-preview`**.
+
+10. **Fechar a sessão de taste** → **`learn-taste`** → regras em `DESIGN.md`
+    (só com aprovação humana).
 
 Orquestrado (harness / worker sem humano no chat): pule o quiet-gate das skills
 filhas e vá direto à Phase 1; preserve propose-then-stop nos nós de taste
@@ -61,6 +65,8 @@ filhas e vá direto à Phase 1; preserve propose-then-stop nos nós de taste
 | --- | --- |
 | Layout explode com nomes longos / lista vazia / RTL | `break-ui` |
 | UI “funciona” mas parece slop / tokens errados / a11y fraca | `review-ui` |
+| Precisa de veredito ship/no-ship / score DS+a11y+craft | `design-jury` |
+| Tokens inválidos / componente inventado (lint mecânico) | `design-jury` + `tools/ds-lint` |
 | Mobile parece “site no celular” / hit target / safe area | `mobile-feel` |
 | Precisa de link/preview/PR para stakeholder | `ship-preview` |
 
@@ -89,6 +95,7 @@ Store pipeline mobile = Later — ver `docs/mobile-path.md`.)
 | "Figma" / "Code Connect" / "sincroniza tokens" | `figma-sync` |
 | "Tenta o pior caso" / "stress test" | `break-ui` |
 | "Isso tá bom?" / "review a UI" | `review-ui` |
+| "Design Jury" / "passa no jury?" / "quality gate" | `design-jury` |
 | "Manda preview" / "abre PR" / "ship" | `ship-preview` |
 | "Para de repetir esse erro" / "grava o taste" | `learn-taste` |
 | "Por onde começo?" | `ask-desigma` (esta) → depois a skill acima |
@@ -101,7 +108,8 @@ Quando o ciclo SDD do harness estiver ativo (`propose` → `apply` → …):
   ainda for aberto.
 - **Implementação de tasks de código** → implementer; builders
   (`pick-stack`, `scaffold-web`, `scaffold-mobile`) alimentam o escopo.
-- **Verify / review** → validator/auditor + gates `break-ui` / `review-ui`.
+- **Verify / review** → validator/auditor + gates `break-ui` / `review-ui` /
+  `design-jury` (lint `tools/ds-lint`).
 - **Archive / PR** → `ship-preview` + fluxo harness de PR.
 
 Ver `harness-overlay/README.md` no repo OpenDesigma.

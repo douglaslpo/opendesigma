@@ -22,7 +22,9 @@ Resolve→query before codegen against unfamiliar APIs.
 
 From the repo root skills pack: `ask-desigma` → `prototype` → `scaffold-web`
 (already applied here) → `figma-sync` (when Figma/DS map matters) →
-`break-ui` → `review-ui` → `ship-preview` → `learn-taste`.
+`break-ui` → `review-ui` → `design-jury` → `ship-preview` → `learn-taste`.
+Mechanical DS checks: `node tools/ds-lint/ds-lint.mjs` (see
+[`docs/design-jury.md`](../../docs/design-jury.md)).
 
 <!-- BEGIN:nextjs-agent-rules -->
 

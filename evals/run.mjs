@@ -13,6 +13,7 @@ const seedDir = path.join(root, "examples", "web-seed");
 const CHECK_MODULES = [
   "./checks/design-contract.mjs",
   "./checks/ds-reuse.mjs",
+  "./checks/ds-lint.mjs",
   "./checks/context7-map.mjs",
   "./checks/a11y-smoke.mjs",
   "./checks/mobile-path.mjs",
@@ -45,7 +46,7 @@ async function main() {
     process.stderr.write(`→ ${mod.id} — ${mod.title}\n`);
     let outcome;
     try {
-      outcome = mod.run(ctx);
+      outcome = await Promise.resolve(mod.run(ctx));
     } catch (err) {
       outcome = { ok: false, message: String(err), details: { stack: err?.stack } };
     }

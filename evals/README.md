@@ -1,8 +1,9 @@
 # OpenDesigma evals (MVP seed)
 
-Outcome-focused checks for the web seed (**DS reuse**, **design contract**,
-**Context7 map**, **a11y smoke**, **Next build**) plus a light **Expo mobile
-path** smoke. Deterministic graders — no LLM judge yet.
+Outcome-focused checks for the web seed (**DS reuse**, **DS lint**, **design
+contract**, **Context7 map**, **a11y smoke**, **Next build**) plus a light
+**Expo mobile path** smoke. Deterministic graders — no LLM judge yet
+(`design-jury` is the agent scorecard).
 
 ## Prerequisites
 
@@ -32,8 +33,12 @@ Run a single eval by id:
 
 ```sh
 node evals/run.mjs --only ds-reuse
+node evals/run.mjs --only ds-lint
 node evals/run.mjs --only build-smoke
 ```
+
+Standalone lint CLI: `node tools/ds-lint/ds-lint.mjs` (see
+[`docs/design-jury.md`](../docs/design-jury.md)).
 
 Exit code `0` = all selected evals passed; non-zero = at least one failed.
 JSON summary prints to stdout; human lines to stderr.
@@ -44,6 +49,7 @@ JSON summary prints to stdout; human lines to stderr.
 | --- | --- | --- |
 | `design-contract` | `DESIGN.md` + `tokens.css` present; globals import tokens; required CSS vars | `examples/web-seed` |
 | `ds-reuse` | App UI imports `@/components/ui`; no invented second Button; token usage | `examples/web-seed` |
+| `ds-lint` | Invalid `var(--*)`, invented protected primitives, registry sync (`tools/ds-lint`) | `examples/web-seed` |
 | `context7-map` | `context7.json` + docs map list required library IDs | repo root |
 | `a11y-smoke` | `lang` on `<html>`, buttons have explicit `type`, focus styles present | `examples/web-seed` |
 | `mobile-path` | Expo seed + `DESIGN.md`/`tokens.ts` + skills + docs (no store build) | `examples/mobile-seed` |

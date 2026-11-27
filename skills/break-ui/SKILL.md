@@ -4,8 +4,8 @@ description: >
   Stress-test UI with worst-case data (long names, empty lists, huge counts,
   emoji, non-Latin, RTL) behind a Demo/Worst-case toggle and report what broke
   with fixes. Use when the user asks to break, stress-test, edge-case, or
-  "tenta o pior caso". For craft critique use review-ui; for variants use
-  prototype.
+  "tenta o pior caso". For craft critique use review-ui; for scored ship gate
+  use design-jury; for variants use prototype.
 layer: gate
 surfaces: [both]
 artifacts: [report, prototype]
@@ -22,7 +22,9 @@ When invoked without a specific question, respond only with:
 **Modo orquestrado:** vá à Phase 1.
 
 It does ONE thing: adversarial data testing. Not redesign (`prototype`), not
-taste review (`review-ui`), not ship (`ship-preview`).
+taste review (`review-ui`), not Design Jury scorecard (`design-jury`), not ship
+(`ship-preview`). After the report, suggest `/design-jury` when the user needs
+a ship/no-ship gate that folds stress findings into the Craft/A11y seats.
 
 ## Operating Posture
 

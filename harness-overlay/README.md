@@ -16,8 +16,8 @@ core do harness (listas hardcoded ficam para v1 skill-packs).
 | `propose` | `prototype` (se look aberto), critérios visuais no design.md do change | HITL no taste |
 | `apply` / implementer | `pick-stack`, `scaffold-web`, `scaffold-mobile`, `figma-sync`, promote de `prototype` | Codegen com DS / Code Connect |
 | `test` | smoke do app scaffoldado | — |
-| `verify` | `break-ui`, `review-ui`, `mobile-feel` (Expo) | Gates visuais além de CA/CR texto |
-| `review` / auditor | `review-ui` | Complementa checklist harness |
+| `verify` | `break-ui`, `review-ui`, `design-jury`, `mobile-feel` (Expo) | Gates + `tools/ds-lint`; ver [`docs/design-jury.md`](../docs/design-jury.md) |
+| `review` / auditor | `review-ui`, `design-jury` | Complementa checklist harness |
 | `archive` / PR | `ship-preview` | Preview URL + PR; sem merge automático |
 | Pós-sessão | `learn-taste` | `DESIGN.md` do workspace |
 
@@ -39,8 +39,9 @@ Skills `harness-*` continuam vindas do instalador global do harness
 
 ## Contratos
 
-1. **Briefing harness** pode apontar “rodar `break-ui` + `review-ui` antes do
-   verify” nos critérios de aceite visuais.
+1. **Briefing harness** pode apontar “rodar `break-ui` + `review-ui` +
+   `design-jury` (com `ds-lint`) antes do verify” nos critérios de aceite
+   visuais.
 2. **Artefatos:** plans/ e `DESIGN.md` no workspace; PNG/diff do kernel
    (`desigma-mcp`) quando houver canvas — paths no briefing (bus é texto-only).
 3. **Ownership:** arquivos gerados por `scaffold-web` / `scaffold-mobile` /
