@@ -60,12 +60,24 @@ Identify: paths changed, whether a prototype was promoted, target
 
 Pick the first that works:
 
-1. **Existing preview host** in the project (document the command).
-2. **Framework preview** — e.g. `vercel` / platform CLI linked to the repo.
-3. **Local share** — `next start` / `pnpm dev` on a known port; label as
-   local-only (not public).
+1. **OpenDesigma preview host** (preferred) — static root + healthcheck.
+   Spec: [`docs/preview-host.md`](../../docs/preview-host.md). Package:
+   [`packages/preview-host`](../../packages/preview-host/).
 
-Record URL, commit SHA, and expiry/assumptions.
+   ```sh
+   # put static export / prototype HTML in the root, then:
+   node packages/preview-host/bin/preview-host.mjs --root <dir>
+   # → http://127.0.0.1:4173/   health: /healthz
+   # optional: OD_PREVIEW_TOKEN=… for LAN/tunnel
+   ```
+
+2. **Framework preview** — e.g. `vercel` / platform CLI linked to the repo
+   (public durable URL when needed).
+3. **Local share** — `next start` / `pnpm dev` on a known port; label as
+   local-only (not public). Prefer the preview host when artifacts are
+   static.
+
+Record URL, commit SHA, and expiry/assumptions. Label local vs deployed.
 
 ### Phase 4 — Git / PR (when requested)
 
@@ -84,7 +96,7 @@ status.
 
 | Item | Value |
 | --- | --- |
-| Preview | URL or "local-only :3000" |
+| Preview | URL (prefer `:4173` host) or "local-only :3000" |
 | Branch | … |
 | PR | URL or n/a |
 | Gates | review-ui ✅/⏭ · break-ui ✅/⏭ |

@@ -16,7 +16,7 @@ Metamodel adapted from [emilkowalski/skills](https://github.com/emilkowalski/ski
 | [`scaffold-web`](scaffold-web/) | builder | Next + React + Tailwind + `DESIGN.md` |
 | [`break-ui`](break-ui/) | gate | Worst-case data (`CATALOG.md`) |
 | [`review-ui`](review-ui/) | gate | Craft / DS / a11y smoke (`STANDARDS.md`) |
-| [`ship-preview`](ship-preview/) | flow | Shareable preview and/or PR |
+| [`ship-preview`](ship-preview/) | flow | Shareable preview and/or PR ([preview host](../packages/preview-host/)) |
 | [`learn-taste`](learn-taste/) | upkeep | Persist corrections → `DESIGN.md` |
 
 Schema extras in frontmatter (`layer`, `surfaces`, `artifacts`) are

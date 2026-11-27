@@ -13,6 +13,9 @@ node_modules/
 .turbo/
 .pnpm-store/
 
+# Local preview artifacts (preview-host default root)
+.opendesigma/
+
 # Figma UI captures: local pixel references only, not redistributed
 /reference/screens/
 

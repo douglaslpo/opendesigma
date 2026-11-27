@@ -16,6 +16,9 @@ web/mobile creation. This repository ships:
 6. **Context7 stack map** — pinned library IDs for docs retrieval.
    See [`docs/context7-stack.md`](docs/context7-stack.md) /
    [`context7.json`](context7.json).
+7. **Preview host** — static share URL for `ship-preview` / `prototype`
+   (Opção A shell). See [`packages/preview-host/`](packages/preview-host/)
+   and [`docs/preview-host.md`](docs/preview-host.md).
 
 Kernel based on [desigma](https://github.com/deepfounder-ai/desigma). Skill
 metamodel adapted from [emilkowalski/skills](https://github.com/emilkowalski/skills)
@@ -66,6 +69,20 @@ node evals/run.mjs
 
 Details: [`evals/README.md`](evals/README.md). Context7 IDs:
 [`docs/context7-stack.md`](docs/context7-stack.md).
+
+## Preview host (Cursor-centric)
+
+Studio shell = Cursor + skills; shareable preview via a tiny static host
+(no OD daemon / no egui). Decision: [`docs/studio-shell.md`](docs/studio-shell.md).
+
+```sh
+node packages/preview-host/bin/preview-host.mjs --root packages/preview-host/public
+# → http://127.0.0.1:4173/   ·   GET /healthz
+```
+
+Point `--root` at Next `out/` or prototype HTML. Skills `ship-preview` and
+`prototype` prefer this path. Full spec:
+[`docs/preview-host.md`](docs/preview-host.md).
 
 ## What’s in the kernel workspace
 
