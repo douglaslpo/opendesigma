@@ -1,0 +1,148 @@
+# Baseline CI.
+# Rust channel must match rust-toolchain.toml (currently 1.93.1).
+# Deterministic evals run on Linux and Windows (path.join / path.sep).
+# Network install/build and cargo stay on Linux — see evals/README.md.
+
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  evals:
+    name: evals (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: CLI contract
+        run: node --test evals/run.test.mjs
+
+      - name: Deterministic evals
+        run: node evals/run.mjs --skip-build --out evals-report.json
+
+      - name: DS lint CLI
+        run: node tools/ds-lint/ds-lint.mjs
+
+      - name: Publish eval report
+        if: always()
+        env:
+          OD_REPORT_TITLE: Evals (${{ matrix.os }})
+        run: node evals/report-summary.mjs evals-report.json
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: evals-${{ matrix.os }}-${{ github.sha }}
+          path: evals-report.json
+          if-no-files-found: warn
+
+  web-seed:
+    name: web-seed (linux, network)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup pnpm from web-seed packageManager
+        uses: pnpm/action-setup@v4
+        with:
+          package_json_file: examples/web-seed/package.json
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: examples/web-seed/pnpm-lock.yaml
+
+      - name: Immutable install
+        working-directory: examples/web-seed
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint
+        working-directory: examples/web-seed
+        run: pnpm lint
+
+      - name: build-smoke
+        run: node evals/run.mjs --only build-smoke --out build-smoke-report.json
+
+      - name: Publish build-smoke report
+        if: always()
+        env:
+          OD_REPORT_TITLE: web-seed build-smoke
+        run: node evals/report-summary.mjs build-smoke-report.json
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: web-seed-${{ github.sha }}
+          path: build-smoke-report.json
+          if-no-files-found: warn
+
+  cargo:
+    name: cargo (linux)
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust 1.93.1
+        id: rustup
+        continue-on-error: true
+        uses: dtolnay/rust-toolchain@1.93.1
+        with:
+          components: clippy, rustfmt
+
+      - name: Record toolchain blocker
+        if: steps.rustup.outcome == 'failure'
+        run: |
+          echo "::warning::Rust toolchain 1.93.1 unavailable; cargo checks were not run"
+          {
+            echo "### Cargo"
+            echo ""
+            echo "Bloqueio: a toolchain Rust 1.93.1 não foi instalada. \`cargo check\` e \`cargo test\` não rodaram."
+            echo ""
+            echo "SHA: \`${{ github.sha }}\`"
+          } >> "$GITHUB_STEP_SUMMARY"
+          exit 1
+
+      - uses: Swatinem/rust-cache@v2
+        with:
+          cache-on-failure: false
+
+      - name: cargo check
+        run: cargo check --locked --workspace
+
+      - name: cargo test
+        run: cargo test --locked -p desigma-doc -p desigma-engine -p desigma-mcp -- --test-threads=1
+
+      - name: Publish cargo summary
+        if: success()
+        run: |
+          {
+            echo "### Cargo"
+            echo ""
+            echo "SHA: \`${{ github.sha }}\`"
+            echo "Executados: cargo check --locked --workspace; cargo test --locked -p desigma-doc -p desigma-engine -p desigma-mcp"
+            echo "Aprovados: 2"
+            echo "Reprovados: 0"
+            echo "Pulados: 0"
+          } >> "$GITHUB_STEP_SUMMARY"

@@ -1,6 +1,6 @@
-import { spawnSync } from "node:child_process";
 import path from "node:path";
 import { exists, fail, pass } from "../lib/fs.mjs";
+import { runPnpm } from "../lib/spawn.mjs";
 
 export const id = "build-smoke";
 export const title = "Next.js production build smoke";
@@ -19,16 +19,17 @@ export function run(ctx) {
     );
   }
 
-  const result = spawnSync("pnpm", ["build"], {
+  const result = runPnpm(["build"], {
     cwd: seed,
     encoding: "utf8",
     env: { ...process.env, CI: "1" },
     timeout: 180_000,
   });
 
-  if (result.status !== 0) {
+  if (result.error || result.status !== 0) {
     return fail("pnpm build failed", {
       status: result.status,
+      error: result.error ? String(result.error) : undefined,
       stderr: (result.stderr || "").slice(-2000),
       stdout: (result.stdout || "").slice(-2000),
     });
